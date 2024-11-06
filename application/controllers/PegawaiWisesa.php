@@ -63,7 +63,7 @@ class PegawaiWisesa extends CI_Controller {
         $this->Wisesa_model->insert_data($data);
         $this->session->set_flashdata('success','data berhasil di tambah');
 
-        redirect('wisesa');
+        redirect('PegawaiWisesa');
     }
 
     public function update_wisesa()
@@ -111,7 +111,7 @@ class PegawaiWisesa extends CI_Controller {
         $where = array('id_wisesa' => $id);
         $this->Wisesa_model->update_data($data, $where);
         $this->session->set_flashdata('edit','data berhasil di update');
-        redirect('wisesa');   
+        redirect('PegawaiWisesa');   
     }
 
     public function hapus_wisesa($id)
@@ -119,7 +119,7 @@ class PegawaiWisesa extends CI_Controller {
         $where = array('id_wisesa' => $id);
         $this->Wisesa_model->hapus_data($where);
         $this->session->set_flashdata('delete','data berhasil di hapus');
-        redirect('wisesa');
+        redirect('PegawaiWisesa');
     }
 
     public function send_contract_notifications() {

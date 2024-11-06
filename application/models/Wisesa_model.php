@@ -10,26 +10,26 @@ class Wisesa_model extends CI_Model {
     }
 
      function tampil_data(){
-       return $this->db->get('barang');
+       return $this->db->get('wisesa');
     }
 
     function insert_data($data){
-        return $this->db->insert('barang', $data);
+        return $this->db->insert('wisesa', $data);
     }
 
     function edit_data($where){
-        return $this->db->get_where('barang', $where);
+        return $this->db->get_where('wisesa', $where);
     }
 
     function update_data($data, $where){
         $this->db->where($where);
-        $this->db->update('barang', $data);
+        $this->db->update('wisesa', $data);
 
     }
 
     function hapus_data($where){
         $this->db->where($where);
-        $this->db->delete('barang');
+        $this->db->delete('wisesa');
 
     } 
 }
