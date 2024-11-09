@@ -61,7 +61,6 @@ class PegawaiEpisi extends CI_Controller {
             'nama_pegawai' => $nama_pegawai,
             'no_ktp' => $no_ktp,
             'no_kk' => $no_kk,
-            'bank' => $l,
             'no_npwp' => $no_npwp,
             'no_rekening' => $no_rekening,
             'no_bpjs_kesehatan' => $no_bpjs_kesehatan,

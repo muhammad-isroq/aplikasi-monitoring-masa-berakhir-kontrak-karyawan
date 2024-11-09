@@ -42,7 +42,7 @@
 								</div>
 								<div class="form-group">
 									<label for="">Nama Pegawai</label>
-									<input type="date" name="nama_pegawai" class="form-control" required>
+									<input type="text" name="nama_pegawai" class="form-control" required>
 								</div>
 								<div class="form-group">
 									<label for="">No KTP</label>
@@ -51,6 +51,10 @@
 								<div class="form-group">
 									<label for="">NO KK</label>
 									<input type="text" name="no_kk" class="form-control" required>
+								</div>
+								<div class="form-group">
+									<label for="">NO NPWP</label>
+									<input type="text" name="no_npwp" class="form-control" required>
 								</div>
 								<div class="form-group">
 									<label for="">NO Rekening</label>
@@ -265,7 +269,7 @@
 															</div>
 															<div class="form-group">
 																<label for="">Nama Pegawai</label>
-																<input type="date" name="nama_pegawai" value="<?= $r['nama_pegawai'];?>" class="form-control">
+																<input type="text" name="nama_pegawai" value="<?= $r['nama_pegawai'];?>" class="form-control">
 															</div>
 															<div class="form-group">
 																<label for="">No KTP</label>
@@ -274,6 +278,10 @@
 															<div class="form-group">
 																<label for="">NO KK</label>
 																<input type="text" name="no_kk" value="<?= $r['no_kk'];?>" class="form-control">
+															</div>
+															<div class="form-group">
+																<label for="">NO NPWP</label>
+																<input type="text" name="no_npwp" value="<?= $r['no_npwp'];?>" class="form-control">
 															</div>
 															<div class="form-group">
 																<label for="">NO Rekening</label>
