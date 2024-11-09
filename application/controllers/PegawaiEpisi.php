@@ -5,20 +5,20 @@ class PegawaiEpisi extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('Wisesa_model');
+        $this->load->model('Episi_model');
         $this->load->library('Mailer');
     }
 
     public function index()
     {
-        $data['wisesa'] = $this->Wisesa_model->tampil_data()->result_array();
+        $data['episi'] = $this->Episi_model->tampil_data()->result_array();
 
         $this->load->view('v_header', $data);
-        $this->load->view('wisesa/v_wisesa', $data);
+        $this->load->view('episi/v_episi', $data);
         $this->load->view('v_footer'); 
     }
 
-    public function insert_wisesa()
+    public function insert_episi()
     {
 
         $z = $this->input->POST('npp');
@@ -60,15 +60,15 @@ class PegawaiEpisi extends CI_Controller {
         );
         
 
-        $this->Wisesa_model->insert_data($data);
+        $this->Episi_model->insert_data($data);
         $this->session->set_flashdata('success','data berhasil di tambah');
 
         redirect('PegawaiEpisi');
     }
 
-    public function update_wisesa()
+    public function update_episi()
     {
-        $id = $this->input->POST('id_wisesa');
+        $id = $this->input->POST('id_episi');
         $z = $this->input->POST('npp');
         $x = $this->input->POST('nama');
         $c = $this->input->POST('posisi_pekerjaan');
@@ -108,16 +108,16 @@ class PegawaiEpisi extends CI_Controller {
         );
 
 
-        $where = array('id_wisesa' => $id);
-        $this->Wisesa_model->update_data($data, $where);
+        $where = array('id_episi' => $id);
+        $this->Episi_model->update_data($data, $where);
         $this->session->set_flashdata('edit','data berhasil di update');
         redirect('PegawaiEpisi');   
     }
 
-    public function hapus_wisesa($id)
+    public function hapus_episi($id)
     {
-        $where = array('id_wisesa' => $id);
-        $this->Wisesa_model->hapus_data($where);
+        $where = array('id_episi' => $id);
+        $this->Episi_model->hapus_data($where);
         $this->session->set_flashdata('delete','data berhasil di hapus');
         redirect('PegawaiEpisi');
     }
@@ -127,7 +127,7 @@ class PegawaiEpisi extends CI_Controller {
         $threshold_date = date('Y-m-d', strtotime('+1 month'));
         
         // Ambil karyawan yang kontraknya akan berakhir dalam waktu satu bulan
-        $expiring_employees = $this->Wisesa_model->get_expiring_contracts($threshold_date);
+        $expiring_employees = $this->Episi_model->get_expiring_contracts($threshold_date);
 
         // Email tujuan
         $recipients = ['muhammadisroq7@gmail.com'];
