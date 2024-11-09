@@ -21,42 +21,72 @@ class PegawaiEpisi extends CI_Controller {
     public function insert_episi()
     {
 
-        $z = $this->input->POST('npp');
-        $x = $this->input->POST('nama');
-        $c = $this->input->POST('posisi_pekerjaan');
-        $v = $this->input->POST('lokasi');
-        $b = $this->input->POST('tgl_lahir');
-        $n = $this->input->POST('gaji_pokok');
-        $m = $this->input->POST('tunjangan');
-        $l = $this->input->POST('bank');
-        $k = $this->input->POST('no_rek');
-        $j = $this->input->POST('total');
-        $h = $this->input->POST('pendidikan');
-        $g = $this->input->POST('jurusan');
-        $f = $this->input->POST('no_kontrak');
-        $d = $this->input->POST('kontrak_awal');
-        $s = $this->input->POST('kontrak_akhir');
-        $a = $this->input->POST('jumlah_bulan');
-        $q = $this->input->POST('devisi');
-        
+        $penyedia_eksternal = $this->input->POST('penyedia_eksternal');        
+        $nip = $this->input->POST('nip');
+        $cabang = $this->input->POST('cabang');
+        $wilayah = $this->input->POST('wilayah');
+        $nama_pegawai = $this->input->POST('nama_pegawai');
+        $no_ktp = $this->input->POST('no_ktp');
+        $no_kk = $this->input->POST('no_kk');        
+        $no_npwp = $this->input->POST('no_npwp');
+        $no_rekening = $this->input->POST('no_rekening');
+        $no_bpjs_kesehatan = $this->input->POST('no_bpjs_kesehatan');
+        $no_bpjs_ketenagakerjaan = $this->input->POST('no_bpjs_ketenagakerjaan');
+        $bank = $this->input->POST('bank');
+        $tempat_lahir = $this->input->POST('tempat_lahir');
+        $tgl_lahir = $this->input->POST('tgl_lahir');
+        $usia_ditahun2023 = $this->input->POST('usia_ditahun2023');
+        $jenis_kelamin = $this->input->POST('jenis_kelamin');
+        $alamat_tinggal = $this->input->POST('alamat_tinggal');
+        $provinsi = $this->input->POST('provinsi');
+        $kota_kab = $this->input->POST('kota_kab');
+        $alamat_ktp = $this->input->POST('alamat_ktp');
+        $email = $this->input->POST('email');
+        $keahlian = $this->input->POST('keahlian');
+        $brevet = $this->input->POST('brevet');
+        $operasional_nonoperasional = $this->input->POST('operasional_nonoperasional');
+        $pendidikan = $this->input->POST('pendidikan');
+        $jurusan = $this->input->POST('jurusan');
+        $status_kawin = $this->input->POST('status_kawin');
+        $agama = $this->input->POST('agama');
+        $kontrak_awal = $this->input->POST('kontrak_awal');
+        $kontrak_akhir = $this->input->POST('kontrak_akhir');
+        $devisi = $this->input->POST('devisi');
+                
         $data = array(
-            'npp' => $z,
-            'nama' => $x,
-            'posisi_pekerjaan' => $c,
-            'lokasi' => $v,
-            'tgl_lahir' => $b,
-            'gaji_pokok' => $n,
-            'tunjangan' => $m,
+            'penyedia_eksternal' => $penyedia_eksternal,
+            'nip' => $nip,
+            'cabang' => $cabang,
+            'wilayah' => $wilayah,
+            'nama_pegawai' => $nama_pegawai,
+            'no_ktp' => $no_ktp,
+            'no_kk' => $no_kk,
             'bank' => $l,
-            'no_rek' => $k,
-            'total' => $j,
-            'pendidikan' => $h,
-            'jurusan' => $g,
-            'no_kontrak' => $f,
-            'kontrak_awal' => $d,
-            'kontrak_akhir' => $s,
-            'jumlah_bulan' => $a,
-            'devisi' => $q
+            'no_npwp' => $no_npwp,
+            'no_rekening' => $no_rekening,
+            'no_bpjs_kesehatan' => $no_bpjs_kesehatan,
+            'no_bpjs_ketenagakerjaan' => $no_bpjs_ketenagakerjaan,
+            'bank' => $bank,
+            'tempat_lahir' => $tempat_lahir,
+            'tgl_lahir' => $tgl_lahir,
+            'usia_ditahun2023' => $usia_ditahun2023,
+            'jenis_kelamin' => $jenis_kelamin,
+            'alamat_tinggal' => $alamat_tinggal,
+            'provinsi' => $provinsi,
+            'kota_kab' => $kota_kab,
+            'alamat_ktp' => $alamat_ktp,
+            'email' => $email,
+            'keahlian' => $keahlian,
+            'brevet' => $brevet,
+            'operasional_nonoperasional' => $operasional_nonoperasional,
+            'pendidikan' => $pendidikan,
+            'jurusan' => $jurusan,
+            'status_kawin' => $status_kawin,
+            'agama' => $agama,
+            'kontrak_awal' => $kontrak_awal,
+            'kontrak_akhir' => $kontrak_akhir,
+            'devisi' => $devisi
+
         );
         
 
@@ -69,42 +99,71 @@ class PegawaiEpisi extends CI_Controller {
     public function update_episi()
     {
         $id = $this->input->POST('id_episi');
-        $z = $this->input->POST('npp');
-        $x = $this->input->POST('nama');
-        $c = $this->input->POST('posisi_pekerjaan');
-        $v = $this->input->POST('lokasi');
-        $b = $this->input->POST('tgl_lahir');
-        $n = $this->input->POST('gaji_pokok');
-        $m = $this->input->POST('tunjangan');
-        $l = $this->input->POST('bank');
-        $k = $this->input->POST('no_rek');
-        $j = $this->input->POST('total');
-        $h = $this->input->POST('pendidikan');
-        $g = $this->input->POST('jurusan');
-        $f = $this->input->POST('no_kontrak');
-        $d = $this->input->POST('kontrak_awal');
-        $s = $this->input->POST('kontrak_akhir');
-        $a = $this->input->POST('jumlah_bulan');
-        $q = $this->input->POST('devisi');
+        $penyedia_eksternal = $this->input->POST('penyedia_eksternal');        
+        $nip = $this->input->POST('nip');
+        $cabang = $this->input->POST('cabang');
+        $wilayah = $this->input->POST('wilayah');
+        $nama_pegawai = $this->input->POST('nama_pegawai');
+        $no_ktp = $this->input->POST('no_ktp');
+        $no_kk = $this->input->POST('no_kk');        
+        $no_npwp = $this->input->POST('no_npwp');
+        $no_rekening = $this->input->POST('no_rekening');
+        $no_bpjs_kesehatan = $this->input->POST('no_bpjs_kesehatan');
+        $no_bpjs_ketenagakerjaan = $this->input->POST('no_bpjs_ketenagakerjaan');
+        $bank = $this->input->POST('bank');
+        $tempat_lahir = $this->input->POST('tempat_lahir');
+        $tgl_lahir = $this->input->POST('tgl_lahir');
+        $usia_ditahun2023 = $this->input->POST('usia_ditahun2023');
+        $jenis_kelamin = $this->input->POST('jenis_kelamin');
+        $alamat_tinggal = $this->input->POST('alamat_tinggal');
+        $provinsi = $this->input->POST('provinsi');
+        $kota_kab = $this->input->POST('kota_kab');
+        $alamat_ktp = $this->input->POST('alamat_ktp');
+        $email = $this->input->POST('email');
+        $keahlian = $this->input->POST('keahlian');
+        $brevet = $this->input->POST('brevet');
+        $operasional_nonoperasional = $this->input->POST('operasional_nonoperasional');
+        $pendidikan = $this->input->POST('pendidikan');
+        $jurusan = $this->input->POST('jurusan');
+        $status_kawin = $this->input->POST('status_kawin');
+        $agama = $this->input->POST('agama');
+        $kontrak_awal = $this->input->POST('kontrak_awal');
+        $kontrak_akhir = $this->input->POST('kontrak_akhir');
+        $devisi = $this->input->POST('devisi');
 
         $data = array(
-            'npp' => $z,
-            'nama' => $x,
-            'posisi_pekerjaan' => $c,
-            'lokasi' => $v,
-            'tgl_lahir' => $b,
-            'gaji_pokok' => $n,
-            'tunjangan' => $m,
+            'penyedia_eksternal' => $penyedia_eksternal,
+            'nip' => $nip,
+            'cabang' => $cabang,
+            'wilayah' => $wilayah,
+            'nama_pegawai' => $nama_pegawai,
+            'no_ktp' => $no_ktp,
+            'no_kk' => $no_kk,
             'bank' => $l,
-            'no_rek' => $k,
-            'total' => $j,
-            'pendidikan' => $h,
-            'jurusan' => $g,
-            'no_kontrak' => $f,
-            'kontrak_awal' => $d,
-            'kontrak_akhir' => $s,
-            'jumlah_bulan' => $a,
-            'devisi' => $q
+            'no_npwp' => $no_npwp,
+            'no_rekening' => $no_rekening,
+            'no_bpjs_kesehatan' => $no_bpjs_kesehatan,
+            'no_bpjs_ketenagakerjaan' => $no_bpjs_ketenagakerjaan,
+            'bank' => $bank,
+            'tempat_lahir' => $tempat_lahir,
+            'tgl_lahir' => $tgl_lahir,
+            'usia_ditahun2023' => $usia_ditahun2023,
+            'jenis_kelamin' => $jenis_kelamin,
+            'alamat_tinggal' => $alamat_tinggal,
+            'provinsi' => $provinsi,
+            'kota_kab' => $kota_kab,
+            'alamat_ktp' => $alamat_ktp,
+            'email' => $email,
+            'keahlian' => $keahlian,
+            'brevet' => $brevet,
+            'operasional_nonoperasional' => $operasional_nonoperasional,
+            'pendidikan' => $pendidikan,
+            'jurusan' => $jurusan,
+            'status_kawin' => $status_kawin,
+            'agama' => $agama,
+            'kontrak_awal' => $kontrak_awal,
+            'kontrak_akhir' => $kontrak_akhir,
+            'devisi' => $devisi
         );
 
 
@@ -134,15 +193,15 @@ class PegawaiEpisi extends CI_Controller {
         
         foreach ($expiring_employees as $employee) {
             $subject = 'Pemberitahuan Masa Berakhir Kontrak';
-            $body = 'Halo ' . $employee->nama . ',<br><br>';
+            $body = 'Halo ' . $employee->nama_pegawai . ',<br><br>';
             $body .= 'Kontrak Anda akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '. ';
             $body .= 'Silakan hubungi HRD untuk informasi lebih lanjut.<br><br>Terima kasih.';
 
             // Kirim email notifikasi
             if ($this->mailer->send_email($recipients, $subject, $body)) {
-                echo "Notifikasi berhasil dikirim untuk karyawan " . $employee->nama . ".<br>";
+                echo "Notifikasi berhasil dikirim untuk karyawan " . $employee->nama_pegawai . ".<br>";
             } else {
-                echo "Gagal mengirim notifikasi untuk karyawan " . $employee->nama . ".<br>";
+                echo "Gagal mengirim notifikasi untuk karyawan " . $employee->nama_pegawai . ".<br>";
             }
         }
     }
