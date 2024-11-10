@@ -134,15 +134,15 @@ class PegawaiWisesa extends CI_Controller {
         
         foreach ($expiring_employees as $employee) {
             $subject = 'Pemberitahuan Masa Berakhir Kontrak';
-            $body = 'Halo ' . $employee->nama . ',<br><br>';
-            $body .= 'Kontrak Anda akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '. ';
-            $body .= 'Silakan hubungi HRD untuk informasi lebih lanjut.<br><br>Terima kasih.';
+            $body = 'Halo ,<br><br>';
+            $body .= 'Kontrak karyawan atas nama ' . $employee->nama . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '. ';
+            $body .= '<br><br>Terima kasih.';
 
             // Kirim email notifikasi
             if ($this->mailer->send_email($recipients, $subject, $body)) {
-                echo "Notifikasi berhasil dikirim untuk karyawan " . $employee->nama . ".<br>";
+                echo "Notifikasi berhasil dikirim atas berakhirnya masa kontrak karyawan " . $employee->nama . ".<br>";
             } else {
-                echo "Gagal mengirim notifikasi untuk karyawan " . $employee->nama . ".<br>";
+                echo "Gagal mengirim notifikasi atas berakhirnya masa kontrak karyawan " . $employee->nama . ".<br>";
             }
         }
     }
