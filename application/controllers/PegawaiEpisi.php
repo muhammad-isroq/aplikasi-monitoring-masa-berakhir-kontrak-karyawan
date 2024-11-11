@@ -52,7 +52,7 @@ class PegawaiEpisi extends CI_Controller {
         $kontrak_awal = $this->input->POST('kontrak_awal');
         $kontrak_akhir = $this->input->POST('kontrak_akhir');
         $devisi = $this->input->POST('devisi');
-                
+
         $data = array(
             'penyedia_eksternal' => $penyedia_eksternal,
             'nip' => $nip,
@@ -181,27 +181,27 @@ class PegawaiEpisi extends CI_Controller {
     }
 
     public function send_contract_notifications() {
-        // Ambil tanggal satu bulan ke depan dari hari ini
         $threshold_date = date('Y-m-d', strtotime('+1 month'));
-        
-        // Ambil karyawan yang kontraknya akan berakhir dalam waktu satu bulan
         $expiring_employees = $this->Episi_model->get_expiring_contracts($threshold_date);
-
-        // Email tujuan
         $recipients = ['muhammadisroq7@gmail.com'];
-        
+
         foreach ($expiring_employees as $employee) {
             $subject = 'Pemberitahuan Masa Berakhir Kontrak';
             $body = 'Halo,<br><br>';
             $body .= 'Kontrak karyawan atas nama '. $employee->nama_pegawai . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '. ';
             $body .= '<br><br>Terima kasih.';
-
-            // Kirim email notifikasi
+        // Kirim email notifikasi
             if ($this->mailer->send_email($recipients, $subject, $body)) {
+            // Perbarui status is_notified menjadi 1
+                $this->db->where('id_episi', $employee->id_episi);
+                $this->db->update('episi', ['is_notified' => 1]);
+
                 echo "Notifikasi berhasil dikirim atas berakhirnya masa kontrak karyawan " . $employee->nama_pegawai . ".<br>";
             } else {
                 echo "Gagal mengirim notifikasi atas berakhirnya masa kontrak karyawan " . $employee->nama_pegawai . ".<br>";
             }
         }
     }
+
+
 }

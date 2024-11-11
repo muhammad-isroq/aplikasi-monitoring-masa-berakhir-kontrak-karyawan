@@ -4,10 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Wisesa_model extends CI_Model {
 
     public function get_expiring_contracts($threshold_date) {
-        // Ambil karyawan dengan kontrak berakhir sebelum atau tepat pada threshold_date
-        $this->db->where('kontrak_akhir <=', $threshold_date);
-        return $this->db->get('wisesa')->result();
-    }
+    // Ambil pegawai yang kontraknya akan berakhir dan belum dikirimi notifikasi
+    $this->db->where('kontrak_akhir <=', $threshold_date);
+    $this->db->where('is_notified', 0);
+    return $this->db->get('wisesa')->result();
+}
+
 
      function tampil_data(){
        return $this->db->get('wisesa');
