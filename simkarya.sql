@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 09 Nov 2024 pada 08.08
+-- Waktu pembuatan: 11 Nov 2024 pada 01.02
 -- Versi server: 10.4.24-MariaDB
 -- Versi PHP: 7.4.28
 
@@ -59,15 +59,19 @@ CREATE TABLE `episi` (
   `agama` varchar(20) NOT NULL,
   `kontrak_awal` date NOT NULL,
   `kontrak_akhir` date NOT NULL,
-  `devisi` varchar(255) NOT NULL
+  `devisi` varchar(255) NOT NULL,
+  `is_notified` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `episi`
 --
 
-INSERT INTO `episi` (`id_episi`, `penyedia_eksternal`, `nip`, `cabang`, `wilayah`, `nama_pegawai`, `no_ktp`, `no_kk`, `no_npwp`, `no_rekening`, `no_bpjs_kesehatan`, `no_bpjs_ketenagakerjaan`, `bank`, `tempat_lahir`, `tgl_lahir`, `usia_ditahun2023`, `jenis_kelamin`, `alamat_tinggal`, `provinsi`, `kota_kab`, `alamat_ktp`, `email`, `keahlian`, `brevet`, `operasional_nonoperasional`, `pendidikan`, `jurusan`, `status_kawin`, `agama`, `kontrak_awal`, `kontrak_akhir`, `devisi`) VALUES
-(1, 'EPISI', 'JP-2204019', 'DUMAI', 'UTARA', 'MUHAMMAD ISROQ', '412536', '535235', '1223535', '23523523', '5235235', '2535255', 'MANDIRI', 'DUMAI', '1999-11-10', '24', 'LAKI-LAKI', 'BULUH KASAP', 'RIAU', 'DUMAI', 'JL. SUDIRMAN DUMAI TIMUR', 'ISROQ123@gmail.com', 'ASS INSPEKTOR', 'ASS INSPEKTOR', '1', 'SMA', 'IPA', 'K', 'ISLAM', '2022-11-03', '2024-12-08', 'PENGUJIAN (PAK FUFUFAFA)\r\n');
+INSERT INTO `episi` (`id_episi`, `penyedia_eksternal`, `nip`, `cabang`, `wilayah`, `nama_pegawai`, `no_ktp`, `no_kk`, `no_npwp`, `no_rekening`, `no_bpjs_kesehatan`, `no_bpjs_ketenagakerjaan`, `bank`, `tempat_lahir`, `tgl_lahir`, `usia_ditahun2023`, `jenis_kelamin`, `alamat_tinggal`, `provinsi`, `kota_kab`, `alamat_ktp`, `email`, `keahlian`, `brevet`, `operasional_nonoperasional`, `pendidikan`, `jurusan`, `status_kawin`, `agama`, `kontrak_awal`, `kontrak_akhir`, `devisi`, `is_notified`) VALUES
+(1, 'EPISI', 'JP-2204019', 'DUMAI', 'UTARA', 'MUHAMMAD ISROQ', '412536', '535235', '1223535', '23523523', '5235235', '2535255', 'MANDIRI', 'DUMAI', '1999-11-10', '24', 'LAKI-LAKI', 'BULUH KASAP', 'RIAU', 'DUMAI', 'JL. SUDIRMAN DUMAI TIMUR', 'ISROQ123@gmail.com', 'ASS INSPEKTOR', 'ASS INSPEKTOR', '1', 'SMA', 'IPA', 'K', 'ISLAM', '2022-11-03', '2024-12-08', 'PENGUJIAN (PAK FUFUFAFA)\r\n', 1),
+(2, 'EPISI', 'FF-22222', 'Bekasi', 'Timur', 'VINICIUSs', '22222', '22222', '22222', '22222', '22222', '22222', 'BRI', 'Tangerang', '2001-01-11', '22', 'WANITA', 'JL.Patimura', 'DKI Jakarta', 'Depok', 'JL.TEGALEGA DEPOK', 'alexa@gmail.com', 'ASS INSPEKTOR', 'ASS INSPEKTOR', '1', 'SMA', 'sastra mesin', 'tk', 'KRISTEN', '2023-03-08', '2024-12-08', 'INSPEKSI (PAK BAGYO)', 1),
+(3, 'EPISI', 'GA-57457', 'DURI', 'BARAT', 'RAHMA ZAKIA', '1245367234', '1245367234', '1245367234', '1245367234', '1245367234', '1245367234', 'BTPN', 'DUMAI', '2001-07-11', '22', 'WANITA', 'Jl. Janur, Jaya mukt', 'Riau', 'Kota D U M A I', 'Jl. Janur, Jaya mukti', 'rahma@gmail.com', 'ASS INSPEKTOR', 'ASS INSPEKTOR', '1', 'S1', 'Teknik Kimia', 'tk', 'ISLAM', '2023-04-24', '2024-12-11', 'INSPEKSI (PAK BAGYO)', 1),
+(4, 'EPISI', 'gf3123', 'DEPOK', 'JABODETABEK', 'JAKA', '09090909', '09090909', '09090909', '09090909', '09090909', '09090909', 'INI', 'TANGSEL', '2003-08-20', '20', 'LAKI-LAKI', 'Jl. Janur, Jaya mukt', 'Riau', 'Kota D U M A I', 'Jl. Janur, Jaya mukti', 'jaka@gmail.com', 'ASS INSPEKTOR', 'ASS INSPEKTOR', '1', 'SMK', 'Kelistrikan', 'tk', 'ISLAM', '2023-02-11', '2024-12-12', 'INSPEKSI (PAK BAGYO)', 0);
 
 -- --------------------------------------------------------
 
@@ -113,16 +117,19 @@ CREATE TABLE `wisesa` (
   `kontrak_awal` date NOT NULL,
   `kontrak_akhir` date NOT NULL,
   `jumlah_bulan` varchar(20) NOT NULL,
-  `devisi` varchar(255) NOT NULL
+  `devisi` varchar(255) NOT NULL,
+  `is_notified` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data untuk tabel `wisesa`
 --
 
-INSERT INTO `wisesa` (`id_wisesa`, `npp`, `nama`, `posisi_pekerjaan`, `lokasi`, `tgl_lahir`, `gaji_pokok`, `tunjangan`, `bank`, `no_rek`, `total`, `pendidikan`, `jurusan`, `no_kontrak`, `kontrak_awal`, `kontrak_akhir`, `jumlah_bulan`, `devisi`) VALUES
-(4, 22040, 'muhammad isroqq', 'INSPECTOR', 'DUMAI', '2000-10-25', ' 3,723,279', '400,000', 'MANDIRI', '1234567890123456', ' 4,223,279', 'SMA', 'IPA', 'DMI/ISR7/O/2510/PTS', '2024-11-07', '2024-12-06', '12', 'PENGUJIAN(PAK GIBRAN)'),
-(5, 55543, 'toni', 'PENGAMAN GEDUNG', 'Duri', '2000-06-14', '3,500,000', '500,000', 'BCA', '153252352', '4,000,000', 'sma', 'ipa', '082414143', '2023-11-08', '2024-12-04', '12', 'pasasfasfddd');
+INSERT INTO `wisesa` (`id_wisesa`, `npp`, `nama`, `posisi_pekerjaan`, `lokasi`, `tgl_lahir`, `gaji_pokok`, `tunjangan`, `bank`, `no_rek`, `total`, `pendidikan`, `jurusan`, `no_kontrak`, `kontrak_awal`, `kontrak_akhir`, `jumlah_bulan`, `devisi`, `is_notified`) VALUES
+(4, 22040, 'muhammad isroqq', 'INSPECTOR', 'DUMAI', '2000-10-25', ' 3,723,279', '400,000', 'MANDIRI', '1234567890123456', ' 4,223,279', 'SMA', 'IPA', 'DMI/ISR7/O/2510/PTS', '2024-11-07', '2024-12-06', '12', 'PENGUJIAN(PAK GIBRAN)', 1),
+(5, 55543, 'toni', 'PENGAMAN GEDUNG', 'Duri', '2000-06-14', '3,500,000', '500,000', 'BCA', '153252352', '4,000,000', 'sma', 'ipa', '082414143', '2023-11-08', '2024-12-04', '12', 'pasasfasfddd', 1),
+(7, 21312, 'roziq', 'DRIVER', 'Dumai', '2000-10-20', '3,500,000', '500,000', 'MANDIRI', '352353535', '4,000,000', 'S1', 'Teknik Komputer', '084124124', '2022-06-25', '2024-12-11', '23', 'INSPEKSI (PAK BAG)', 1),
+(8, 7777, 'cr7', 'CS', 'DEPOK', '2001-05-22', '3,400,000', '500,000', 'INI', '7777777', '3,900,000', 'S1', 'TEKNIK SIPIL', 'KO-77777', '2023-11-11', '2024-12-12', '13', 'INSPEKSI (PAK BAG)', 0);
 
 --
 -- Indexes for dumped tables
@@ -154,7 +161,7 @@ ALTER TABLE `wisesa`
 -- AUTO_INCREMENT untuk tabel `episi`
 --
 ALTER TABLE `episi`
-  MODIFY `id_episi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_episi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
@@ -166,7 +173,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT untuk tabel `wisesa`
 --
 ALTER TABLE `wisesa`
-  MODIFY `id_wisesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_wisesa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
