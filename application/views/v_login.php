@@ -55,7 +55,7 @@
             </main>
         </div>
         <div id="layoutAuthentication_footer">
-            <footer class="py-5 bg-light mt-5">
+            <footer class="py-3 bg-light mt-5 fixed-bottom">
                 <div class="container-fluid px-4">
                     <div class="text-center justify-content-between small">
                         <div class="text-muted">Copyright &copy; simkarya 2024</div>
