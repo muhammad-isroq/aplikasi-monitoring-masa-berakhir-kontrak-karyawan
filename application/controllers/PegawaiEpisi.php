@@ -5,7 +5,11 @@ class PegawaiEpisi extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        if(empty($this->session->userdata('login'))){
+        redirect('Auth');
+        }
         $this->load->model('Episi_model');
+        $this->load->model('User_model');
         $this->load->library('Mailer');
     }
 
@@ -15,7 +19,7 @@ class PegawaiEpisi extends CI_Controller {
 
         $this->load->view('v_header', $data);
         $this->load->view('episi/v_episi', $data);
-        $this->load->view('v_footer'); 
+         
     }
 
     public function insert_episi()

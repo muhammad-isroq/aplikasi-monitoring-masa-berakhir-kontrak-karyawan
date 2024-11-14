@@ -37,14 +37,17 @@ class Auth extends CI_Controller {
             //mendaftarkan session / si $sess_data
                 $this->session->set_userdata($sess_data);
 
-                redirect(base_url()); //jika cek login benar maka dialihkan ke index
+                redirect(base_url('Dashboard')); //jika cek login benar maka dialihkan ke index
             }
             else{
+                $this->session->set_flashdata('error', 'Username atau Password salah');
                 redirect(base_url('Auth')); // jika salah dialihkan kembali ke auth.php atau login
             }
             
         }
         else{           //jika validasi salah maka kembali ke tampilan login
+            // Set flashdata untuk pesan kesalahan
+            $this->session->set_flashdata('error', 'Username atau Password salah');
             $this->load->view('v_login');
         } 
     }

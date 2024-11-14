@@ -5,7 +5,11 @@ class PegawaiWisesa extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        if(empty($this->session->userdata('login'))){
+        redirect('Auth');
+        }
         $this->load->model('Wisesa_model');
+        $this->load->model('User_model');
         $this->load->library('Mailer');
     }
 
