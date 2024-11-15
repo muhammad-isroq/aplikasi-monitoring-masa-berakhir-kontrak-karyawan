@@ -51,9 +51,9 @@
     </nav>
 
     <?php
-      
-        $this->load->view('v_sidebar');
-      
+
+    $this->load->view('v_sidebar');
+
     ?>
 
     <div class="content-wrapper">
@@ -63,7 +63,7 @@
           <div class="row mb-2">
             <div class="col-sm-6">
               <h1 class="h3 mb-4 ">Dashboard</h1>
-                <p>Selamat datang di Sistem Monitoring Masa Berakhir Kontrak Karyawan</p>
+              <p>Selamat datang di Sistem Monitoring Masa Berakhir Kontrak Karyawan</p>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -80,60 +80,69 @@
         <div class="container-fluid">
           <p class=""></p>
           <?php if($this->session->flashdata('success')){ ?>
-          <script type="text/javascript">
-            Swal.fire({
-              title: "Data Ditambahkan!",               
-              icon: "success"
-            });
-          </script>
+            <script type="text/javascript">
+              Swal.fire({
+                title: "Data Ditambahkan!",               
+                icon: "success"
+              });
+            </script>
           <?php } else if($this->session->flashdata('edit')){  ?>
 
-          <script type="text/javascript">
-            Swal.fire({
-              title: "Data Diubah!",                
-              icon: "success"
-            });
-          </script>         
+            <script type="text/javascript">
+              Swal.fire({
+                title: "Data Diubah!",                
+                icon: "success"
+              });
+            </script>         
 
           <?php } else if($this->session->flashdata('delete')){  ?>
 
-          <script type="text/javascript">
-            Swal.fire({
-              title: "Data Dihapus!",               
-              icon: "success"
-            });
-          </script>
+            <script type="text/javascript">
+              Swal.fire({
+                title: "Data Dihapus!",               
+                icon: "success"
+              });
+            </script>
           <?php } ?>
-          <div class="row">
-          	<div class="card border-0">
-              <div class="card-header" > 
-                <h3>ubah email</h3>
+          <div class="row row-md-2">
+            <div class="col-md">
+              <h1>oke</h1>
+            </div>
+            <div class="col-md">
+              <h2>iya</h2>
               </div>
-
-              
+          <div class="row row-md">
+                          <div class="card p-2">
+                <div class="card-header" > 
+                  <h3>ubah email</h3>
+                </div>              
                 <div class="card-body table table-responsive p-0">
                   <table class="table table-hover text-nowrap">
-                    
-                      <thead>
-                        <tr class="">
-                          <th scope="col">NO</th>
-                          <th scope="col">Email 1</th>
-                          <th scope="col">Email 2</th>
-                          <th scope="col">Aksi</th>                                           
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php $no = 1; foreach($users as $r){?>
+
+                    <thead>
+                      <tr class="">
+                        <th scope="col">NO</th>
+                        <th scope="col">Email 1</th>
+                        <th scope="col">Email 2</th>
+                        <th scope="col">Pesan 1</th>
+                        <th scope="col">Pesan 2</th>
+                        <th scope="col">Aksi</th>                                           
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php $no = 1; foreach($users as $r){?>
                         <tr>
                           <td><?= $no; ?></td>
                           <td><?= $r['email1'];?></td>
                           <td><?= $r['email2'];?></td>
+                          <td><?= $r['message1'];?></td>
+                          <td><?= $r['message2'];?></td>
                           <td>
                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1<?php echo $r['id'];?>">Ubah</button>
 
 
                             <div class="modal fade" id="exampleModal1<?php echo $r['id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-dialog modal-fullscreen-md-down">
+                              <div class="modal-dialog modal-xl">
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah email</h1>
@@ -149,7 +158,15 @@
                                       <div class="form-group">
                                         <label for="">Email 2</label>
                                         <input type="text" name="email2" value="<?= $r['email2']; ?>" class="form-control">
-                                      </div>                                                  
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="">Pesan 1</label>
+                                        <textarea class="form-control" name="message1" aria-label="With textarea"><?= $r['message1']; ?></textarea>
+                                      </div> 
+                                      <div class="form-group">
+                                        <label for="">Pesan 2</label>
+                                        <textarea class="form-control" name="message2" aria-label="With textarea"><?= $r['message2']; ?></textarea>
+                                      </div>                                                                                                    
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -164,63 +181,60 @@
                         <?php $no++;} ?>  
                       </tbody>
                     </table>
-                  
+
+                  </div>              
                 </div>
-              
-
-
-
+          </div>    
             </div>
-          </div>
-        </section>
-        <footer class="main-footer text-center">
-          <strong>Copyright &copy; simkarya 2024</a>.</strong>
+          </section>
+          <footer class="main-footer text-center fixed-bottom">
+            <strong>Copyright &copy; simkarya 2024</a>.</strong>
 
-        </footer>
+          </footer>
+
+        </div>
+
+
+        <aside class="control-sidebar control-sidebar-dark">
+
+        </aside>
 
       </div>
 
 
-      <aside class="control-sidebar control-sidebar-dark">
 
-      </aside>
+      <script src="AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
 
-    </div>
+      <script src="AdminLTE-3.2.0/plugins/jquery-ui/jquery-ui.min.js"></script>
 
+      <script>
+        $.widget.bridge('uibutton', $.ui.button)
+      </script>
 
+      <script src="AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+      <script src="AdminLTE-3.2.0/plugins/chart.js/Chart.min.js"></script>
 
-    <script src="AdminLTE-3.2.0/plugins/jquery-ui/jquery-ui.min.js"></script>
+      <script src="AdminLTE-3.2.0/plugins/sparklines/sparkline.js"></script>
 
-    <script>
-      $.widget.bridge('uibutton', $.ui.button)
-    </script>
+      <script src="AdminLTE-3.2.0/plugins/jqvmap/jquery.vmap.min.js"></script>
+      <script src="AdminLTE-3.2.0/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 
-    <script src="AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+      <script src="AdminLTE-3.2.0/plugins/jquery-knob/jquery.knob.min.js"></script>
 
-    <script src="AdminLTE-3.2.0/plugins/chart.js/Chart.min.js"></script>
+      <script src="AdminLTE-3.2.0/plugins/moment/moment.min.js"></script>
+      <script src="AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.js"></script>
 
-    <script src="AdminLTE-3.2.0/plugins/sparklines/sparkline.js"></script>
+      <script src="AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <script src="AdminLTE-3.2.0/plugins/jqvmap/jquery.vmap.min.js"></script>
-    <script src="AdminLTE-3.2.0/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+      <script src="AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.js"></script>
 
-    <script src="AdminLTE-3.2.0/plugins/jquery-knob/jquery.knob.min.js"></script>
+      <script src="AdminLTE-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 
-    <script src="AdminLTE-3.2.0/plugins/moment/moment.min.js"></script>
-    <script src="AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.js"></script>
+      <script src="AdminLTE-3.2.0/dist/js/adminlte.js?v=3.2.0"></script>
 
-    <script src="AdminLTE-3.2.0/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+      <script src="AdminLTE-3.2.0/dist/js/demo.js"></script>
 
-    <script src="AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.js"></script>
-
-    <script src="AdminLTE-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
-
-    <script src="AdminLTE-3.2.0/dist/js/adminlte.js?v=3.2.0"></script>
-
-    <script src="AdminLTE-3.2.0/dist/js/demo.js"></script>
-
-    <script src="AdminLTE-3.2.0/dist/js/pages/dashboard.js"></script>
-  </body>
-  </html>
+      <script src="AdminLTE-3.2.0/dist/js/pages/dashboard.js"></script>
+    </body>
+    </html>

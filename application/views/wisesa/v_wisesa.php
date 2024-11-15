@@ -108,11 +108,12 @@
     <div class="card border-0">
       <div class="card-header" > 
         <h2 class="text-center ">Data Pegawai Wisesa</h2>
+        <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+        tambah
+    </button>
     </div>
 
-    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModal1">
-        tambah
-    </button>           
+               
     <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog modal-fullscreen-xxl-down">
             <div class="modal-content">
@@ -356,7 +357,7 @@
 </div>
 </div>
 </section>
-<footer class="main-footer text-center">
+<footer class="main-footer text-center fixed-bottom">
   <strong>Copyright &copy; simkarya 2024</a>.</strong>
 
 </footer>

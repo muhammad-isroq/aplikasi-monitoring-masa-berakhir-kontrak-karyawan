@@ -496,7 +496,7 @@
 </div>
 </div>
 </section>
-<footer class="main-footer text-center">
+<footer class="main-footer text-center fixed-bottom">
   <strong>Copyright &copy; simkarya 2024</a>.</strong>
 
 </footer>
