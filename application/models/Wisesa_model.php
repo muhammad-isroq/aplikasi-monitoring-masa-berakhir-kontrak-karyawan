@@ -12,14 +12,14 @@ class Wisesa_model extends CI_Model {
 
 
     function tampil_data() {
-    $this->db->order_by("
-        CASE 
-        WHEN kontrak_akhir >= CURDATE() THEN 0
+        $this->db->order_by("
+            CASE 
+            WHEN kontrak_akhir >= CURDATE() THEN 0
             ELSE 1
             END, kontrak_akhir ASC
-    ");
-    return $this->db->get('wisesa');
-}
+            ");
+        return $this->db->get('wisesa');
+    }
 
 
 

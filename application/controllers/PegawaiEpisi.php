@@ -184,28 +184,74 @@ class PegawaiEpisi extends CI_Controller {
         redirect('PegawaiEpisi');
     }
 
+    private function send_email($recipients, $subject, $body) {
+        $this->load->library('email');
+
+        $config = [
+            'protocol'  => 'smtp',
+            'smtp_host' => 'smtp.gmail.com',
+            'smtp_user' => 'isroqtest@gmail.com',
+            'smtp_pass' => 'bijh bywl jfgy yhsw',
+            'smtp_port' => 587,
+            'smtp_crypto' => 'tls',
+            'mailtype'  => 'html',
+            'charset'   => 'utf-8',
+            'newline'   => "\r\n"
+        ];
+
+        $this->email->initialize($config);
+        $this->email->from('isroqtest@gmail.com', 'Simkarya');
+        $this->email->to($recipients);
+        $this->email->subject($subject);
+        $this->email->message($body);
+
+        if ($this->email->send()) {
+            echo "Notifikasi berhasil dikirim ke " . implode(", ", $recipients) . ".<br>";
+        } else {
+            echo "Gagal mengirim email ke " . implode(", ", $recipients) . ".<br>";
+            show_error($this->email->print_debugger());
+        }
+    }
+
     public function send_contract_notifications() {
         $threshold_date = date('Y-m-d', strtotime('+1 month'));
         $expiring_employees = $this->Episi_model->get_expiring_contracts($threshold_date);
-        $recipients = ['muhammadisroq7@gmail.com'];
 
-        foreach ($expiring_employees as $employee) {
-            $subject = 'Pemberitahuan Masa Berakhir Kontrak';
-            $body = 'Halo,<br><br>';
-            $body .= 'Kontrak karyawan atas nama '. $employee->nama_pegawai . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '. ';
-            $body .= '<br><br>Terima kasih.';
-        // Kirim email notifikasi
-            if ($this->mailer->send_email($recipients, $subject, $body)) {
-            // Perbarui status is_notified menjadi 1
-                $this->db->where('id_episi', $employee->id_episi);
-                $this->db->update('episi', ['is_notified' => 1]);
+    // Ambil email dan pesan dari tabel users
+        $user_data = $this->db->select('email1, email2, message1, message2')->get('users')->result();
 
-                echo "Notifikasi berhasil dikirim atas berakhirnya masa kontrak karyawan " . $employee->nama_pegawai . ".<br>";
-            } else {
-                echo "Gagal mengirim notifikasi atas berakhirnya masa kontrak karyawan " . $employee->nama_pegawai . ".<br>";
+        foreach ($user_data as $user) {
+        // Cek apakah email1 dan email2 tersedia
+            if (!empty($user->email1)) {
+                $recipients = [$user->email1];
+                $subject = 'Pemberitahuan Masa Berakhir Kontrak';
+                $body = $user->message1 . '<br><br>';
+
+                foreach ($expiring_employees as $employee) {
+                    $body .= 'Kontrak karyawan atas nama ' . $employee->nama_pegawai . '('. $employee->brevet.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '.<br>';
+                }
+                $body .= '<br>Terima kasih.';
+
+            // Kirim email ke email1
+                $this->send_email($recipients, $subject, $body);
+            }
+
+            if (!empty($user->email2)) {
+                $recipients = [$user->email2];
+                $subject = 'Pemberitahuan Masa Berakhir Kontrak';
+                $body = $user->message2 . '<br><br>';
+
+                foreach ($expiring_employees as $employee) {
+                    $body .= 'Kontrak karyawan atas nama ' . $employee->nama_pegawai . '('. $employee->brevet.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '.<br>';
+                }
+                $body .= '<br>Terima kasih.';
+
+            // Kirim email ke email2
+                $this->send_email($recipients, $subject, $body);
             }
         }
     }
+
 
 
 }
