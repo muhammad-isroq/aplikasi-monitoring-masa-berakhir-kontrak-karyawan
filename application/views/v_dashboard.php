@@ -45,7 +45,7 @@
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="<?=base_url('Admin');?>" class="nav-link">Home</a>
+          <a href="<?=base_url('Dashboard');?>" class="nav-link">Home</a>
         </li>
       </ul>
     </nav>
@@ -110,9 +110,9 @@
             </div>
             <div class="col-md">
               <h2>iya</h2>
-              </div>
-          <div class="row row-md">
-                          <div class="card p-2">
+            </div>
+            <div class="row row-md">
+              <div class="card p-2">
                 <div class="card-header" > 
                   <h3>ubah email</h3>
                 </div>              
@@ -184,7 +184,7 @@
 
                   </div>              
                 </div>
-          </div>    
+              </div>    
             </div>
           </section>
           <footer class="main-footer text-center fixed-bottom">
