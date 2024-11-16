@@ -5,14 +5,20 @@ class Episi_model extends CI_Model {
 
     public function get_expiring_contracts($threshold_date) {
     // Ambil pegawai yang kontraknya akan berakhir dan belum dikirimi notifikasi
-    $this->db->where('kontrak_akhir <=', $threshold_date);
-    $this->db->where('is_notified', 0);
-    return $this->db->get('episi')->result();
-}
+        $this->db->where('kontrak_akhir <=', $threshold_date);
+        $this->db->where('is_notified', 0);
+        return $this->db->get('episi')->result();
+    }
 
 
-     function tampil_data(){
-       return $this->db->get('episi');
+    function tampil_data() {
+        $this->db->order_by("
+            CASE 
+            WHEN kontrak_akhir >= CURDATE() THEN 0
+            ELSE 1
+            END, kontrak_akhir ASC
+            ");
+        return $this->db->get('episi');
     }
 
     function insert_data($data){
