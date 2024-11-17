@@ -19,7 +19,7 @@ class PegawaiWisesa extends CI_Controller {
         $this->load->library('pagination');
 
     // Konfigurasi pagination
-        $config['base_url'] = site_url('PegawaiWisesa/index');
+    $config['base_url'] = site_url('PegawaiWisesa/index');
     $config['total_rows'] = $this->Wisesa_model->get_total_rows(); // Ambil total data
     $config['per_page'] = 5; // Jumlah data per halaman
     $config['uri_segment'] = 3;
@@ -90,7 +90,7 @@ public function insert_wisesa()
     $s = $this->input->POST('kontrak_akhir');
     $a = $this->input->POST('jumlah_bulan');
     $q = $this->input->POST('devisi');
-    
+
     $data = array(
         'npp' => $z,
         'nama' => $x,
@@ -110,7 +110,7 @@ public function insert_wisesa()
         'jumlah_bulan' => $a,
         'devisi' => $q
     );
-    
+
 
     $this->Wisesa_model->insert_data($data);
     $this->session->set_flashdata('success','data berhasil di tambah');

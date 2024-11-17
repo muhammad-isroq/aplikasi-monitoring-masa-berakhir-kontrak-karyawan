@@ -15,12 +15,60 @@ class PegawaiEpisi extends CI_Controller {
 
     public function index()
     {
-        $data['episi'] = $this->Episi_model->tampil_data()->result_array();
+    // Load library pagination
+        $this->load->library('pagination');
 
-        $this->load->view('v_header', $data);
-        $this->load->view('episi/v_episi', $data);
-         
-    }
+    // Konfigurasi pagination
+        $config['base_url'] = site_url('PegawaiEpisi/index');
+    $config['total_rows'] = $this->Episi_model->get_total_rows(); // Ambil total data
+    $config['per_page'] = 5; // Jumlah data per halaman
+    $config['uri_segment'] = 3;
+    
+    // Bootstrap 5 Pagination Styling
+    $config['full_tag_open'] = '<ul class="pagination justify-content-center">';
+    $config['full_tag_close'] = '</ul>';
+
+    $config['first_link'] = 'First';
+    $config['first_tag_open'] = '<li class="page-item">';
+    $config['first_tag_close'] = '</li>';
+
+    $config['last_link'] = 'Last';
+    $config['last_tag_open'] = '<li class="page-item">';
+    $config['last_tag_close'] = '</li>';
+
+    $config['next_link'] = 'Next';
+    $config['next_tag_open'] = '<li class="page-item">';
+    $config['next_tag_close'] = '</li>';
+
+    $config['prev_link'] = 'Previous';
+    $config['prev_tag_open'] = '<li class="page-item">';
+    $config['prev_tag_close'] = '</li>';
+
+    $config['cur_tag_open'] = '<li class="page-item active"><a class="page-link">';
+    $config['cur_tag_close'] = '</a></li>';
+
+    $config['num_tag_open'] = '<li class="page-item">';
+    $config['num_tag_close'] = '</li>';
+
+    $config['attributes'] = ['class' => 'page-link'];
+
+
+    // Inisialisasi pagination
+    $this->pagination->initialize($config);
+
+    // Ambil data dengan limit dan offset
+    $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+    $data['episi'] = $this->Episi_model->tampil_data($config['per_page'], $page)->result_array();
+
+    // Link pagination
+    $data['pagination'] = $this->pagination->create_links();
+    $data['page'] = $page;
+
+    // Load view
+    $this->load->view('v_header', $data);
+    $this->load->view('episi/v_episi', $data);
+    $this->load->view('v_footer'); 
+}
 
     public function insert_episi()
     {

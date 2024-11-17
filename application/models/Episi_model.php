@@ -11,15 +11,23 @@ class Episi_model extends CI_Model {
     }
 
 
-    function tampil_data() {
+    public function get_total_rows()
+    {
+    return $this->db->count_all('episi');
+    }
+
+    function tampil_data($limit, $start) {
+        $this->db->limit($limit, $start);
         $this->db->order_by("
             CASE 
             WHEN kontrak_akhir >= CURDATE() THEN 0
             ELSE 1
             END, kontrak_akhir ASC
             ");
+
         return $this->db->get('episi');
     }
+
 
     function insert_data($data){
         return $this->db->insert('episi', $data);
