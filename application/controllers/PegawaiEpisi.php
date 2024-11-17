@@ -70,6 +70,17 @@ class PegawaiEpisi extends CI_Controller {
     $this->load->view('v_footer'); 
 }
 
+    public function search()
+{
+    $keyword = $this->input->post('keyword');
+    $data['result'] = $this->Episi_model->search_pegawai($keyword);
+
+    // Load hasil pencarian di dalam modal
+    $this->load->view('v_header', $data);
+    $this->load->view('episi/v_result', $data);
+    $this->load->view('v_footer'); 
+}
+
     public function insert_episi()
     {
 

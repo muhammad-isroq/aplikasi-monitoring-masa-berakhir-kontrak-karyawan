@@ -99,7 +99,7 @@ $this->load->view('v_sidebar');
                 Cari pegawai
             </div>
             <div class="card-body">
-                <form method="POST" action="<?= base_url('PegawaiWisesa/search'); ?>">
+                <form method="POST" action="<?= base_url('PegawaiWisesa/searchPegawai'); ?>">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Cari pegawai" name="keyword">
                         <button class="btn btn-outline-secondary" type="submit">Cari</button>
@@ -259,7 +259,7 @@ $this->load->view('v_sidebar');
                 </tr>
             </thead>
             <tbody>
-                <?php $no = $page + 1; foreach($wisesa as $r){?>
+                <?php $no = 1; foreach($result as $r){?>
                     <tr>
                         <td><?= $no; ?></td>
                         <td><?= $r['npp'];?></td>
@@ -381,15 +381,7 @@ $this->load->view('v_sidebar');
                 </tbody>
             </table>
             <!-- Tampilkan Pagination -->
-            <div class="d-flex justify-content-center">
-                <?= $pagination; ?>
-                <script>
-                    $(document).ready(function() {
-                        $.getScript("<?= base_url('assets/dist/js/adminlte.min.js'); ?>");
-                    });
-                </script>
-
-            </div>
+            
         </div>   
 
     </div>

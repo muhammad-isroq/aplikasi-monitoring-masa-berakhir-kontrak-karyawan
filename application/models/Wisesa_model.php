@@ -27,8 +27,13 @@ class Wisesa_model extends CI_Model {
         return $this->db->get('wisesa');
     }
 
-
-
+    public function search_pegawai($keyword)
+{
+    $this->db->like('nama', $keyword);
+    $this->db->or_like('npp', $keyword);
+    $this->db->or_like('posisi_pekerjaan', $keyword);
+    return $this->db->get('wisesa')->result_array();
+}
 
     function insert_data($data){
         return $this->db->insert('wisesa', $data);

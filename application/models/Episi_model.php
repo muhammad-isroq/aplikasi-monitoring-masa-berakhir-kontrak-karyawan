@@ -16,6 +16,14 @@ class Episi_model extends CI_Model {
     return $this->db->count_all('episi');
     }
 
+    public function search_pegawai($keyword)
+{
+    $this->db->like('nama_pegawai', $keyword);
+    $this->db->or_like('nip', $keyword);
+    $this->db->or_like('brevet', $keyword);
+    return $this->db->get('episi')->result_array();
+}
+
     function tampil_data($limit, $start) {
         $this->db->limit($limit, $start);
         $this->db->order_by("
