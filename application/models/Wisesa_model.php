@@ -10,14 +10,20 @@ class Wisesa_model extends CI_Model {
         return $this->db->get('wisesa')->result();
     }
 
+    public function get_total_rows()
+    {
+    return $this->db->count_all('wisesa');
+    }
 
-    function tampil_data() {
+    function tampil_data($limit, $start) {
+        $this->db->limit($limit, $start);
         $this->db->order_by("
             CASE 
             WHEN kontrak_akhir >= CURDATE() THEN 0
             ELSE 1
             END, kontrak_akhir ASC
             ");
+
         return $this->db->get('wisesa');
     }
 

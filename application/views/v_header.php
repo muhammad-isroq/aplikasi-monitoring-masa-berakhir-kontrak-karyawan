@@ -18,7 +18,7 @@
   
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid collapse navbar-collapse" id="navbarNavDropdown">
-            <a class="navbar-brand link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-4" href="<?=base_url('Admin');?>">Simkarya</a>
+            <a class="navbar-brand link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-4" href="<?=base_url('Dashboard');?>">Simkarya</a>
             <ul class="nav justify-content-end">
                 <li class="nav-item">
                     <a href="#" class="nav-link link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"><i class="fi fi-rr-user p-2"></i>Selamat datang <?php echo  $this->session->userdata('username');?></a>
