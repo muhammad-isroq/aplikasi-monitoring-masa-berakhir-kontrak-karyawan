@@ -102,7 +102,7 @@
                 <form method="POST" action="<?= base_url('PegawaiEpisi/search'); ?>">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Cari pegawai" name="keyword">
-                        <button class="btn btn-outline-secondary" type="submit">Cari</button>
+                        <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
             </div>
@@ -139,7 +139,8 @@
       <div class="card-header bg-dark" > 
         <h2 class="text-center ">Data Pegawai Episi</h2>
         <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-            tambah
+            <i class="fas fa-plus"></i> 
+
         </button>
     </div>
 
@@ -365,7 +366,7 @@
                     <td><?= $r['devisi'];?></td>
                     <td>
 
-                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal2<?php echo $r['id_episi'];?>">Ubah</button>
+                        <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal2<?php echo $r['id_episi'];?>"><i class="fas fa-pen"></i></button>
 
 
                         <div class="modal fade" id="exampleModal2<?php echo $r['id_episi'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -514,7 +515,8 @@
                         </div>
                     </td>     
                     <td>
-                        <a href="<?=base_url().'PegawaiEpisi/hapus_episi/'.$r['id_episi']; ?>" type="button" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus?');">hapus</a>   
+                        <a href="<?=base_url().'PegawaiEpisi/hapus_episi/'.$r['id_episi']; ?>" type="button" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus?');"><i class="fas fa-trash"></i> 
+</a>   
                     </td>                
                 </tr>
                 <?php $no++;} ?>  

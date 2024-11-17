@@ -21,7 +21,7 @@ class Wisesa_model extends CI_Model {
             CASE 
             WHEN kontrak_akhir >= CURDATE() THEN 0
             ELSE 1
-            END, kontrak_akhir ASC
+            END, kontrak_akhir DESC
             ");
 
         return $this->db->get('wisesa');

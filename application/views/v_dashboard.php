@@ -104,17 +104,26 @@
               });
             </script>
           <?php } ?>
-          <div class="row row-md-2">
+          <div class="row row-md-2 mb-3">
             <div class="col-md">
-              <h1>oke</h1>
+              <div class="card p-3 shadow-md">
+                <p>
+                Sistem ini akan mengirimkan notifikasi sebulan sebelum masa kontrak habis. Pesan, email penerima,email pengirim dan app pasword email pengirim dapat diedit pada tabel dibawah.
+              </p>
+              <br>
+              <p>
+                note: app password adalah pengganti password email pengirim.
+              </p>
+              </div>
             </div>
             <div class="col-md">
-              <h2>iya</h2>
+              <!-- <h2>iya</h2> -->
+            </div>            
             </div>
             <div class="row row-md">
-              <div class="card p-2">
-                <div class="card-header" > 
-                  <h3>ubah email</h3>
+              <div class="card p-2 mb-3">
+                <div class="card-header bg-primary" > 
+                  <h3>Edit pesan dan email penerima</h3>
                 </div>              
                 <div class="card-body table table-responsive p-0">
                   <table class="table table-hover text-nowrap">
@@ -122,10 +131,12 @@
                     <thead>
                       <tr class="">
                         <th scope="col">NO</th>
-                        <th scope="col">Email 1</th>
-                        <th scope="col">Email 2</th>
-                        <th scope="col">Pesan 1</th>
-                        <th scope="col">Pesan 2</th>
+                        <th scope="col">Email Penerima 1</th>
+                        <th scope="col">Email Penerima 2</th>
+                        <th scope="col">Pesan Penerima 1</th>
+                        <th scope="col">Pesan Penerima 2</th>
+                        <th scope="col">Email Pengirim</th>
+                        <th scope="col">App Password Email Pengirim</th>
                         <th scope="col">Aksi</th>                                           
                       </tr>
                     </thead>
@@ -137,8 +148,10 @@
                           <td><?= $r['email2'];?></td>
                           <td><?= $r['message1'];?></td>
                           <td><?= $r['message2'];?></td>
+                          <td><?= $r['smtp_user'];?></td>
+                          <td><?= $r['smtp_pass'];?></td>
                           <td>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1<?php echo $r['id'];?>">Ubah</button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1<?php echo $r['id'];?>"><i class="fas fa-pen"></i></button>
 
 
                             <div class="modal fade" id="exampleModal1<?php echo $r['id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -166,7 +179,15 @@
                                       <div class="form-group">
                                         <label for="">Pesan 2</label>
                                         <textarea class="form-control" name="message2" aria-label="With textarea"><?= $r['message2']; ?></textarea>
-                                      </div>                                                                                                    
+                                      </div>                                                                  
+                                      <div class="form-group">
+                                        <label for="">Email Pengirim</label>
+                                        <input type="text" name="smtp_user" value="<?= $r['smtp_user']; ?>" class="form-control">
+                                      </div>
+                                      <div class="form-group">
+                                        <label for="">App Password Email Pengirim</label>
+                                        <input type="text" name="smtp_pass" value="<?= $r['smtp_pass']; ?>" class="form-control">
+                                      </div>
                                       <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <button type="submit" class="btn btn-primary">Save changes</button>
@@ -182,11 +203,12 @@
                       </tbody>
                     </table>
 
-                  </div>              
+                  </div>
+                  <br><br>              
                 </div>
               </div>    
-            </div>
           </section>
+
           <footer class="main-footer text-center fixed-bottom">
             <strong>Copyright &copy; simkarya 2024</a>.</strong>
 

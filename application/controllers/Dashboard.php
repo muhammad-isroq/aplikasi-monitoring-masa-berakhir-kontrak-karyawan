@@ -33,13 +33,18 @@ class Dashboard extends CI_Controller {
 		$x = $this->input->POST('email2');
 		$message1 = $this->input->post('message1');
 		$message2 = $this->input->post('message2');
+		$smtp_user = $this->input->post('smtp_user');
+		$smtp_pass = $this->input->post('smtp_pass');
+		
 
 
 		$data = array(
 			'email1' => $z,
 			'email2' => $x,
 			'message1' => $message1,
-			'message2' => $message2            
+			'message2' => $message2,
+			'smtp_user' => $smtp_user,
+			'smtp_pass' => $smtp_pass            
 		);
 
 
