@@ -89,6 +89,9 @@
                     <ul>
                       <li>Data yang belum melewati hari ini akan ditampilkan di urutan atas (yang kontraknya paling dekat di urutan teratas).</li>
                       <li>Data yang masa kontraknya sudah melewati hari ini akan ditampilkan di urutan bawah.</li>
+                      <li>Notifikasi = 1 = notifikasi telah terkirim</li>
+                      <li>Notifikasi = 0 = notifikasi telah belum terkirim</li>
+                      <li>simkarya hanya mengirim notifikasi ke data yang notifikasinya 0 agar notifikasi tidak terkirim 2x</li>
                   </ul>
               </div>
           </div>
@@ -326,6 +329,7 @@
                     <th scope="col">Kontrak Awal</th>
                     <th scope="col">Kontrak Akhir</th>                                  
                     <th scope="col">Devisi</th>
+                    <th scope="col">Notifikasi</th>
                     <th scope="col" colspan="2" class="text-center">aksi</th>
                 </tr>
             </thead>
@@ -364,6 +368,7 @@
                     <td><?= $r['kontrak_awal'];?></td>
                     <td><?= $r['kontrak_akhir'];?></td>                                 
                     <td><?= $r['devisi'];?></td>
+                    <td><?= $r['is_notified'];?></td>
                     <td>
 
                         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal2<?php echo $r['id_episi'];?>"><i class="fas fa-pen"></i></button>
