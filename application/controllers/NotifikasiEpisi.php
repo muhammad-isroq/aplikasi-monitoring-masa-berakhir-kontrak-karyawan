@@ -34,7 +34,7 @@ class NotifikasiEpisi extends CI_Controller {
             $body = $user->message1 . '<br><br>';
 
             foreach ($expiring_employees as $employee) {
-                $body .= 'Kontrak karyawan atas nama ' . $employee->nama_pegawai . '('. $employee->posisi_pekerjaan.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '.<br>';
+                $body .= 'Kontrak karyawan atas nama ' . $employee->nama_pegawai . '('. $employee->brevet.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '.<br>';
             }
             $body .= '<br>Terima kasih.';
 
@@ -56,7 +56,7 @@ class NotifikasiEpisi extends CI_Controller {
             $body = $user->message2 . '<br><br>';
 
             foreach ($expiring_employees as $employee) {
-                $body .= 'Kontrak karyawan atas nama ' . $employee->nama_pegawai . '('. $employee->posisi_pekerjaan.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '.<br>';
+                $body .= 'Kontrak karyawan atas nama ' . $employee->nama_pegawai . '('. $employee->brevet.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->kontrak_akhir)) . '.<br>';
             }
             $body .= '<br>Terima kasih.';
             foreach ($expiring_employees as $employee) {
@@ -116,5 +116,4 @@ private function send_email($recipients, $subject, $body) {
 
 
 
-                
 }

@@ -36,9 +36,9 @@
 
     <div class="preloader flex-column justify-content-center align-items-center">
         <img class="animation__shake" src="<?= base_url();?>AdminLTE-3.2.0/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+    </div>
 
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
 
       <ul class="navbar-nav" data-widget="tree">
         <li class="nav-item">
@@ -62,10 +62,10 @@ $this->load->view('v_sidebar');
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="h3 mb-4 ">Pegawai Episi</h1>
-          
-      </div>
-      <div class="col-sm-6">
+            <h1 class="h3 mb-4 ">Pegawai Episi</h1>
+            
+        </div>
+        <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<?=base_url('Dashboard');?>">Dashboard</a></li>
             <li class="breadcrumb-item" arian-current="page">Pegawai Episi</li>
@@ -294,7 +294,7 @@ $this->load->view('v_sidebar');
     <div class="card-body">
 
         <div class="table-responsive p-0">
-           <table class="table table-hover text-nowrap">        
+         <table class="table table-hover text-nowrap">        
             <thead>
                 <tr class="">
                     <th scope="col">NO</th>
@@ -334,7 +334,7 @@ $this->load->view('v_sidebar');
                 </tr>
             </thead>
             <tbody>
-<?php $no = $page + 1; foreach($episi as $r){?>
+                <?php $no = $page + 1; foreach($episi as $r){?>
                     <tr>
                         <td><?= $no; ?></td>
                         <td><?= $r['penyedia_eksternal'];?></td>
@@ -521,7 +521,7 @@ $this->load->view('v_sidebar');
                         </td>     
                         <td>
                             <a href="<?=base_url().'PegawaiEpisi/hapus_episi/'.$r['id_episi']; ?>" type="button" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus?');"><i class="fas fa-trash"></i> 
-</a>   
+                            </a>   
                         </td>                
                     </tr>
                     <?php $no++;} ?>  

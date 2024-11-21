@@ -36,6 +36,14 @@
           </a>
         </li>
 
+        <!-- Pegawai Wisesa -->
+        <li class="nav-item">
+          <a class="nav-link <?= ($this->uri->segment(1) == 'PttProject') ? 'active' : ''; ?>" href="<?= base_url('PttProject'); ?>">
+            <i class="nav-icon fas fa-users"></i>
+            <p>PTT Project</p>
+          </a>
+        </li>
+
       </ul>
     </nav>
   </div>
