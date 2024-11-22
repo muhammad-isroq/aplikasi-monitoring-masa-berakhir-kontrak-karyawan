@@ -38,7 +38,7 @@
       <img class="animation__shake" src="AdminLTE-3.2.0/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
     </div>
 
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
 
       <ul class="navbar-nav" data-widget="tree">
         <li class="nav-item">
@@ -46,6 +46,14 @@
         </li>
         <li class="nav-item d-none d-sm-inline-block">
           <a href="<?=base_url('Dashboard');?>" class="nav-link">Home</a>
+        </li>    
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a href="" class="nav-link"><i class="fi fi-rr-user p-2"></i>Selamat datang <?php echo  $this->session->userdata('username');?></a>
+        </li>
+        <li class="nav-item">
+          <a href="#" id="logout-link" class="nav-link"><i class="fi fi-rr-sign-out-alt p-2"></i>Logout</a>
         </li>
       </ul>
     </nav>
@@ -108,105 +116,105 @@
             <div class="col-md">
               <div class="card p-3 shadow-md">
                 <p>
-                Sistem ini akan mengirimkan notifikasi sebulan sebelum masa kontrak habis. Pesan, email penerima,email pengirim dan app pasword email pengirim dapat diedit pada tabel dibawah.
-              </p>
-              <br>
-              <p>
-                note: app password adalah pengganti password email pengirim.
-              </p>
+                  Sistem ini akan mengirimkan notifikasi sebulan sebelum masa kontrak habis. Pesan, email penerima,email pengirim dan app pasword email pengirim dapat diedit pada tabel dibawah.
+                </p>
+                <br>
+                <p>
+                  note: app password adalah pengganti password email pengirim.
+                </p>
               </div>
             </div>
             <div class="col-md">
               <!-- <h2>iya</h2> -->
             </div>            
-            </div>
-            <div class="row row-md">
-              <div class="card p-2 mb-3">
-                <div class="card-header bg-primary" > 
-                  <h3>Edit pesan dan email penerima</h3>
-                </div>              
-                <div class="card-body table table-responsive p-0">
-                  <table class="table table-hover text-nowrap">
+          </div>
+          <div class="row row-md">
+            <div class="card p-2 mb-3">
+              <div class="card-header bg-primary" > 
+                <h3>Edit pesan dan email penerima</h3>
+              </div>              
+              <div class="card-body table table-responsive p-0">
+                <table class="table table-hover text-nowrap">
 
-                    <thead>
-                      <tr class="">
-                        <th scope="col">NO</th>
-                        <th scope="col">Email Penerima 1</th>
-                        <th scope="col">Email Penerima 2</th>
-                        <th scope="col">Pesan Penerima 1</th>
-                        <th scope="col">Pesan Penerima 2</th>
-                        <th scope="col">Email Pengirim</th>
-                        <th scope="col">App Password Email Pengirim</th>
-                        <th scope="col">Aksi</th>                                           
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php $no = 1; foreach($users as $r){?>
-                        <tr>
-                          <td><?= $no; ?></td>
-                          <td><?= $r['email1'];?></td>
-                          <td><?= $r['email2'];?></td>
-                          <td><?= $r['message1'];?></td>
-                          <td><?= $r['message2'];?></td>
-                          <td><?= $r['smtp_user'];?></td>
-                          <td><?= $r['smtp_pass'];?></td>
-                          <td>
-                            <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1<?php echo $r['id'];?>"><i class="fas fa-pen"></i></button>
+                  <thead>
+                    <tr class="">
+                      <th scope="col">NO</th>
+                      <th scope="col">Email Penerima 1</th>
+                      <th scope="col">Email Penerima 2</th>
+                      <th scope="col">Pesan Penerima 1</th>
+                      <th scope="col">Pesan Penerima 2</th>
+                      <th scope="col">Email Pengirim</th>
+                      <th scope="col">App Password Email Pengirim</th>
+                      <th scope="col">Aksi</th>                                           
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no = 1; foreach($users as $r){?>
+                      <tr>
+                        <td><?= $no; ?></td>
+                        <td><?= $r['email1'];?></td>
+                        <td><?= $r['email2'];?></td>
+                        <td><?= $r['message1'];?></td>
+                        <td><?= $r['message2'];?></td>
+                        <td><?= $r['smtp_user'];?></td>
+                        <td><?= $r['smtp_pass'];?></td>
+                        <td>
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal1<?php echo $r['id'];?>"><i class="fas fa-pen"></i></button>
 
 
-                            <div class="modal fade" id="exampleModal1<?php echo $r['id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                              <div class="modal-dialog modal-xl">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah email</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                  </div>
-                                  <div class="modal-body">
-                                    <form method="POST" action="<?=base_url('Dashboard/update_email'); ?>"enctype="multipart/form-data">
-                                      <input type="hidden" name="id" value="<?= $r['id']; ?>">          
-                                      <div class="form-group">
-                                        <label for="">Email 1</label>
-                                        <input type="text" name="email1" value="<?= $r['email1']; ?>" class="form-control">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="">Email 2</label>
-                                        <input type="text" name="email2" value="<?= $r['email2']; ?>" class="form-control">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="">Pesan 1</label>
-                                        <textarea class="form-control" name="message1" aria-label="With textarea"><?= $r['message1']; ?></textarea>
-                                      </div> 
-                                      <div class="form-group">
-                                        <label for="">Pesan 2</label>
-                                        <textarea class="form-control" name="message2" aria-label="With textarea"><?= $r['message2']; ?></textarea>
-                                      </div>                                                                  
-                                      <div class="form-group">
-                                        <label for="">Email Pengirim</label>
-                                        <input type="text" name="smtp_user" value="<?= $r['smtp_user']; ?>" class="form-control">
-                                      </div>
-                                      <div class="form-group">
-                                        <label for="">App Password Email Pengirim</label>
-                                        <input type="text" name="smtp_pass" value="<?= $r['smtp_pass']; ?>" class="form-control">
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                      </div>                               
-                                    </form>
-                                  </div>
+                          <div class="modal fade" id="exampleModal1<?php echo $r['id'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-xl">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">Ubah email</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form method="POST" action="<?=base_url('Dashboard/update_email'); ?>"enctype="multipart/form-data">
+                                    <input type="hidden" name="id" value="<?= $r['id']; ?>">          
+                                    <div class="form-group">
+                                      <label for="">Email 1</label>
+                                      <input type="text" name="email1" value="<?= $r['email1']; ?>" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="">Email 2</label>
+                                      <input type="text" name="email2" value="<?= $r['email2']; ?>" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="">Pesan 1</label>
+                                      <textarea class="form-control" name="message1" aria-label="With textarea"><?= $r['message1']; ?></textarea>
+                                    </div> 
+                                    <div class="form-group">
+                                      <label for="">Pesan 2</label>
+                                      <textarea class="form-control" name="message2" aria-label="With textarea"><?= $r['message2']; ?></textarea>
+                                    </div>                                                                  
+                                    <div class="form-group">
+                                      <label for="">Email Pengirim</label>
+                                      <input type="text" name="smtp_user" value="<?= $r['smtp_user']; ?>" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="">App Password Email Pengirim</label>
+                                      <input type="text" name="smtp_pass" value="<?= $r['smtp_pass']; ?>" class="form-control">
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>                               
+                                  </form>
                                 </div>
                               </div>
                             </div>
-                          </td>        
-                        </tr>
-                        <?php $no++;} ?>  
-                      </tbody>
-                    </table>
+                          </div>
+                        </td>        
+                      </tr>
+                      <?php $no++;} ?>  
+                    </tbody>
+                  </table>
 
-                  </div>
-                  <br><br>              
                 </div>
-              </div>    
+                <br><br>              
+              </div>
+            </div>    
           </section>
 
           <footer class="main-footer text-center fixed-bottom">
@@ -223,7 +231,22 @@
 
       </div>
 
-
+      <script>
+        document.getElementById('logout-link').addEventListener('click', function(event) {
+          event.preventDefault();
+          Swal.fire({
+            title: 'Yakin ingin logout?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, logout',
+            cancelButtonText: 'Tidak, tetap disini'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = "<?=base_url('Auth/logout');?>";
+            }
+          });
+        });
+      </script>
 
       <script src="AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
 

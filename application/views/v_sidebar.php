@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="position: fixed; top: 0; bottom: 0; left: 0; overflow-y: auto;">
   <div class="sidebar">
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
@@ -36,11 +36,19 @@
           </a>
         </li>
 
-        <!-- Pegawai Wisesa -->
+        <!-- PTT Poject -->
         <li class="nav-item">
           <a class="nav-link <?= ($this->uri->segment(1) == 'PttProject') ? 'active' : ''; ?>" href="<?= base_url('PttProject'); ?>">
             <i class="nav-icon fas fa-users"></i>
             <p>PTT Project</p>
+          </a>
+        </li>
+
+        <!-- PTT Reguler -->
+        <li class="nav-item">
+          <a class="nav-link <?= ($this->uri->segment(1) == 'PttReguler') ? 'active' : ''; ?>" href="<?= base_url('PttReguler'); ?>">
+            <i class="nav-icon fas fa-users"></i>
+            <p>PTT Reguler</p>
           </a>
         </li>
 

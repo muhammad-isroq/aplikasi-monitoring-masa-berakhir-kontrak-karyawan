@@ -16,7 +16,7 @@
 </head>
 <body>
   
-    <nav class="navbar navbar-expand-lg bg-dark">
+    <!-- <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid collapse navbar-collapse" id="navbarNavDropdown">
             <a class="navbar-brand link-light link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover fs-4" href="<?=base_url('Dashboard');?>">Simkarya</a>
             <ul class="nav justify-content-end">
@@ -28,7 +28,7 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 
     <!-- Optional JavaScript; choose one of the two! -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

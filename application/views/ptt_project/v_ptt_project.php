@@ -36,9 +36,9 @@
 
     <div class="preloader flex-column justify-content-center align-items-center">
         <img class="animation__shake" src="<?= base_url();?>AdminLTE-3.2.0/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+    </div>
 
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
 
       <ul class="navbar-nav" data-widget="tree">
         <li class="nav-item">
@@ -46,8 +46,16 @@
       </li>
       <li class="nav-item d-none d-sm-inline-block">
           <a href="<?=base_url('Dashboard');?>" class="nav-link">Home</a>
-      </li>
+      </li>    
   </ul>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <a href="" class="nav-link"><i class="fi fi-rr-user p-2"></i>Selamat datang <?php echo  $this->session->userdata('username');?></a>
+  </li>
+  <li class="nav-item">
+      <a href="#" id="logout-link" class="nav-link"><i class="fi fi-rr-sign-out-alt p-2"></i>Logout</a>
+  </li>
+</ul>
 </nav>
 
 <?php
@@ -99,12 +107,12 @@ $this->load->view('v_sidebar');
       <div class="col col-md-6">
         <div class="card text-bg-light">
             <div class="card-header bg-primary">
-                Cari Project
+                Cari nama pegawai/nama project/nomor kontrak
             </div>
             <div class="card-body">
                 <form method="POST" action="<?= base_url('PttProject/search'); ?>">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Cari Project" name="keyword">
+                        <input type="text" class="form-control" placeholder="Cari" name="keyword">
                         <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
@@ -113,20 +121,20 @@ $this->load->view('v_sidebar');
     </div>
 </div>
 <?php if($this->session->flashdata('success')){ ?>
-  <script type="text/javascript">
-    Swal.fire({
-      title: "Data Ditambahkan!",               
-      icon: "success"
-  });
-</script>
+    <script type="text/javascript">
+        Swal.fire({
+          title: "Data Ditambahkan!",               
+          icon: "success"
+      });
+  </script>
 <?php } else if($this->session->flashdata('edit')){  ?>
 
-  <script type="text/javascript">
-    Swal.fire({
-      title: "Data Diubah!",                
-      icon: "success"
-  });
-</script>         
+    <script type="text/javascript">
+        Swal.fire({
+          title: "Data Diubah!",                
+          icon: "success"
+      });
+  </script>         
 
 <?php } else if($this->session->flashdata('delete')){  ?>
 
@@ -170,7 +178,11 @@ $this->load->view('v_sidebar');
                         </div>
                         <div class="form-group">
                             <label for="">Gender</label>
-                            <input type="text" name="gender" class="form-control" required>
+                            <select class="form-select" name="gender" aria-label="Default select example">
+                                <option selected>Pilih Gender</option>
+                                <option value="M">M</option>
+                                <option value="F">F</option>                              
+                            </select>
                         </div>
                         <div class="form-group">
                             <label for="">Agama</label>
@@ -209,7 +221,7 @@ $this->load->view('v_sidebar');
     <div class="card-body">
 
         <div class="table-responsive p-0">
-           <table class="table table-hover text-nowrap">        
+         <table class="table table-hover text-nowrap">        
             <thead>
                 <tr class="">
                     <th scope="col">NO</th>                    
@@ -271,7 +283,11 @@ $this->load->view('v_sidebar');
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Gender</label>
-                                                    <input type="text" name="gender" value="<?= $r['gender']; ?>" class="form-control">                        
+                                                    <select class="form-select" name="gender" value="<?= $r['gender']; ?>" aria-label="Default select example">
+                                                        <option selected><?= $r['gender']; ?></option>
+                                                        <option value="M">M</option>
+                                                        <option value="F">F</option>                              
+                                                    </select>
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Agama</label>
@@ -310,7 +326,7 @@ $this->load->view('v_sidebar');
                         </td>     
                         <td>
                             <a href="<?=base_url().'PttProject/hapus_ptt_project/'.$r['id_ptt_project']; ?>" type="button" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus?');"><i class="fas fa-trash"></i> 
-</a>   
+                            </a>   
                         </td>                
                     </tr>
                     <?php $no++;} ?>  
@@ -347,7 +363,22 @@ $this->load->view('v_sidebar');
 
 </div>
 
-
+<script>
+        document.getElementById('logout-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            Swal.fire({
+                title: 'Yakin ingin logout?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Ya, logout',
+                cancelButtonText: 'Tidak, tetap disini'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "<?=base_url('Auth/logout');?>";
+                }
+            });
+        });
+    </script>
 
 <script src="<?= base_url('AdminLTE-3.2.0/plugins/jquery/jquery.min.js');?>"></script>
 
