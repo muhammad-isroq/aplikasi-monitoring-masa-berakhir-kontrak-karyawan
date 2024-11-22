@@ -70,13 +70,13 @@ $this->load->view('v_sidebar');
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="h3 mb-4 ">PTT Project</h1>
+          <h1 class="h3 mb-4 ">PTT Reguler</h1>
           
       </div>
       <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="<?=base_url('Dashboard');?>">Dashboard</a></li>
-            <li class="breadcrumb-item" arian-current="page">PTT Project</li>
+            <li class="breadcrumb-item" arian-current="page">PTT Reguler</li>
         </ol>
     </div>
 </div>
@@ -90,7 +90,7 @@ $this->load->view('v_sidebar');
           <div class="col col-md-6 ">
               <div class="card text-bg-light">
                 <div class="card-header bg-primary">
-                    Data PTT Project
+                    Data PTT Reguler
                 </div>
                 <div class="card-body">
                     <p>Data Pegawai ini diurutkan berdasarkan: </p>
@@ -107,10 +107,10 @@ $this->load->view('v_sidebar');
       <div class="col col-md-6">
         <div class="card text-bg-light">
             <div class="card-header bg-primary">
-                Cari nama pegawai/nama project/nomor kontrak
+                Cari period pegawai/Jabatan/nomor kontrak
             </div>
             <div class="card-body">
-                <form method="POST" action="<?= base_url('PttProject/search'); ?>">
+                <form method="POST" action="<?= base_url('PttReguler/search'); ?>">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Cari" name="keyword">
                         <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
@@ -148,7 +148,7 @@ $this->load->view('v_sidebar');
 <div class="row row-md">
     <div class="card p-3">
       <div class="card-header bg-dark" > 
-        <h2 class="text-center ">Data PTT Project</h2>
+        <h2 class="text-center ">Data PTT Reguler</h2>
         <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal1">
             <i class="fas fa-plus"></i> 
         </button>
@@ -163,18 +163,42 @@ $this->load->view('v_sidebar');
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="<?=base_url('PttProject/insert_ptt_project'); ?>" enctype="multipart/form-data">
+                    <form method="POST" action="<?=base_url('PttReguler/insert_ptt_reguler'); ?>" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="">Period</label>
+                            <input type="text" name="period" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">KdCabang</label>
+                            <input type="text" name="kdcabang" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Cabang</label>
+                            <input type="text" name="cabang" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Unit Organisasi</label>
+                            <input type="text" name="unit_organisasi" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="">NRK</label>
+                            <input type="text" name="nrk" class="form-control">
+                        </div>
                         <div class="form-group">
                             <label for="">Nama</label>
-                            <input type="text" name="nama" class="form-control" required>
+                            <input type="text" name="nama" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="">Tempat Lahir</label>
-                            <input type="text" name="tempat_lahir" class="form-control" required>
+                            <label for="">Empcat</label>
+                            <input type="text" name="empcat" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="">Tanggal Lahir</label>
-                            <input type="date" name="tgl_lahir" class="form-control" required>
+                            <label for="">Pangkat</label>
+                            <input type="text" name="pangkat" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Jabatan</label>
+                            <input type="text" name="jabatan" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="">Gender</label>
@@ -185,28 +209,12 @@ $this->load->view('v_sidebar');
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="">Agama</label>
-                            <input type="text" name="agama" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="">No Kontrak</label>
-                            <input type="text" name="no_kontrak" class="form-control">
-                        </div>
-                        <div class="form-group">
                             <label for="">Tanggal Mulai</label>
-                            <input type="date" name="tgl_mulai" class="form-control">
+                            <input type="date" name="start_date" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for="">Tanggal Selesai</label>
-                            <input type="date" name="tgl_selesai" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Nama Project</label>
-                            <input type="text" name="nama_project" class="form-control">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Lokasi</label>
-                            <input type="text" name="lokasi" class="form-control">
+                            <input type="date" name="end_date" class="form-control">
                         </div>
 
                         <div class="modal-footer">
@@ -225,41 +233,45 @@ $this->load->view('v_sidebar');
             <thead>
                 <tr class="">
                     <th scope="col">NO</th>                    
-                    <th scope="col">Nama</th>            
-                    <th scope="col">Tempat Lahir</th>
-                    <th scope="col">Tanggal Lahir</th>
+                    <th scope="col">Period</th>            
+                    <th scope="col">KdCabang</th>
+                    <th scope="col">Cabang</th>
+                    <th scope="col">Unit Organisasi</th>
+                    <th scope="col">NRK</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Empcat</th>
+                    <th scope="col">Pangkat</th>
+                    <th scope="col">Jabatan</th>
                     <th scope="col">Gender</th>
-                    <th scope="col">Agama</th>
-                    <th scope="col">No Kontrak</th>
                     <th scope="col">Tanggal Mulai</th>
                     <th scope="col">Tanggal Selesai</th>
-                    <th scope="col">Nama Project</th>
-                    <th scope="col">Lokasi</th>
                     <th scope="col">Notifikasi</th>
                     <th scope="col" colspan="2" class="text-center">aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <?php $no = $page + 1; foreach($ptt_project as $r){?>
+                <?php $no = $page + 1; foreach($ptt_reguler as $r){?>
                     <tr>
                         <td><?= $no; ?></td>                        
+                        <td><?= $r['period'];?></td>
+                        <td><?= $r['kdcabang'];?></td>                        
+                        <td><?= $r['cabang'];?></td>
+                        <td><?= $r['unit_organisasi'];?></td> 
+                        <td><?= $r['nrk'];?></td>                                    
                         <td><?= $r['nama'];?></td>
-                        <td><?= $r['tempat_lahir'];?></td>                        
-                        <td><?= $r['tgl_lahir'];?></td> 
-                        <td><?= $r['gender'];?></td>                                    
-                        <td><?= $r['agama'];?></td>
-                        <td><?= $r['no_kontrak'];?></td>
-                        <td><?= $r['tgl_mulai'];?></td>
-                        <td><?= $r['tgl_selesai'];?></td>
-                        <td><?= $r['nama_project'];?></td>
-                        <td><?= $r['lokasi'];?></td>
+                        <td><?= $r['empcat'];?></td>
+                        <td><?= $r['pangkat'];?></td>
+                        <td><?= $r['jabatan'];?></td>
+                        <td><?= $r['gender'];?></td>
+                        <td><?= $r['start_date'];?></td>
+                        <td><?= $r['end_date'];?></td>
                         <td><?= $r['is_notified'];?></td>
                         <td>
 
-                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal2<?php echo $r['id_ptt_project'];?>"><i class="fas fa-pen"></i></button>
+                            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal2<?php echo $r['id_ptt_reguler'];?>"><i class="fas fa-pen"></i></button>
 
 
-                            <div class="modal fade" id="exampleModal2<?php echo $r['id_ptt_project'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" id="exampleModal2<?php echo $r['id_ptt_reguler'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog modal-fullscreen-md-down">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -267,53 +279,60 @@ $this->load->view('v_sidebar');
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form method="POST" action="<?=base_url('PttProject/update_ptt_project'); ?>"enctype="multipart/form-data">
-                                                <input type="hidden" name="id_ptt_project" value="<?= $r['id_ptt_project']; ?>">          
+                                            <form method="POST" action="<?=base_url('PttReguler/update_ptt_reguler'); ?>"enctype="multipart/form-data">
+                                                <input type="hidden" name="id_ptt_reguler" value="<?= $r['id_ptt_reguler']; ?>">          
+                                                <div class="form-group">
+                                                    <label for="">Period</label>
+                                                    <input type="text" name="period" value="<?= $r['period']; ?>" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">KdCabang</label>
+                                                    <input type="text" name="kdcabang" value="<?= $r['kdcabang']; ?>" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Cabang</label>
+                                                    <input type="text" name="cabang" value="<?= $r['cabang']; ?>" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Unit Organisasi</label>
+                                                    <input type="text" name="unit_organisasi" value="<?= $r['unit_organisasi']; ?>" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">NRK</label>
+                                                    <input type="text" name="nrk" value="<?= $r['nrk']; ?>" class="form-control">
+                                                </div>
                                                 <div class="form-group">
                                                     <label for="">Nama</label>
                                                     <input type="text" name="nama" value="<?= $r['nama']; ?>" class="form-control">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">Tempat Lahir</label>
-                                                    <input type="text" name="tempat_lahir" value="<?= $r['tempat_lahir']; ?>" class="form-control">
+                                                    <label for="">Empcat</label>
+                                                    <input type="text" name="empcat" value="<?= $r['empcat']; ?>" class="form-control">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">Tanggal Lahir</label>
-                                                    <input type="date" name="tgl_lahir" value="<?= $r['tgl_lahir']; ?>" class="form-control">                        
+                                                    <label for="">Pangkat</label>
+                                                    <input type="text" name="pangkat" value="<?= $r['pangkat']; ?>" class="form-control">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label for="">Jabatan</label>
+                                                    <input type="text" name="jabatan" value="<?= $r['jabatan']; ?>" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Gender</label>
                                                     <select class="form-select" name="gender" value="<?= $r['gender']; ?>" aria-label="Default select example">
                                                         <option selected><?= $r['gender']; ?></option>
                                                         <option value="M">M</option>
-                                                        <option value="F">F</option>                              
+                                                        <option value="F">F</option>
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">Agama</label>
-                                                    <input type="text" name="agama" value="<?= $r['agama']; ?>" class="form-control">                        
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">No Kontrak</label>
-                                                    <input type="text" name="no_kontrak" value="<?= $r['no_kontrak']; ?>" class="form-control">
-                                                </div>
-                                                <div class="form-group">
                                                     <label for="">Tanggal Mulai</label>
-                                                    <input type="date" name="tgl_mulai" value="<?= $r['tgl_mulai']; ?>" class="form-control">
+                                                    <input type="date" name="start_date" value="<?= $r['start_date']; ?>" class="form-control">
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Tanggal Selesai</label>
-                                                    <input type="date" name="tgl_selesai" value="<?= $r['tgl_selesai']; ?>" class="form-control">
+                                                    <input type="date" name="end_date" value="<?= $r['end_date']; ?>" class="form-control">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label for="">Nama Project</label>
-                                                    <input type="text" name="nama_project" value="<?= $r['nama_project']; ?>" class="form-control">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label for="">Lokasi</label>
-                                                    <input type="text" name="lokasi" value="<?= $r['lokasi']; ?>" class="form-control">
-                                                </div>
-
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                                     <button type="submit" class="btn btn-primary">Save changes</button>
@@ -325,7 +344,7 @@ $this->load->view('v_sidebar');
                             </div>
                         </td>     
                         <td>
-                            <a href="<?=base_url().'PttProject/hapus_ptt_project/'.$r['id_ptt_project']; ?>" type="button" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus?');"><i class="fas fa-trash"></i> 
+                            <a href="<?=base_url().'PttReguler/hapus_ptt_reguler/'.$r['id_ptt_reguler']; ?>" type="button" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus?');"><i class="fas fa-trash"></i> 
                             </a>   
                         </td>                
                     </tr>
