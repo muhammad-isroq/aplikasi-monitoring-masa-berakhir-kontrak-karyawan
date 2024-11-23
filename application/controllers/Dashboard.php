@@ -54,5 +54,35 @@ class Dashboard extends CI_Controller {
 		redirect('Dashboard');   
 	}
 
+	public function update_user()
+	{
+		$id = $this->input->post('id');
+		$username = $this->input->post('username');
+    $password = $this->input->post('password'); // Optional
+    $nama_lengkap = $this->input->post('nama_lengkap');
+
+    // Data untuk diupdate
+    $data = array(
+    	'username' => $username,
+    	'nama_lengkap' => $nama_lengkap,
+    );
+
+    // Jika password diisi, tambahkan ke data
+    if (!empty($password)) {
+        $data['password'] = password_hash($password, PASSWORD_BCRYPT); // Enkripsi password
+    }
+
+    // Update data di database
+    $where = array('id' => $id);
+    $this->User_model->update_data($data, $where);
+
+    // Set flash message
+    $this->session->set_flashdata('success', 'Data user berhasil diperbarui.');
+
+    // Redirect kembali ke dashboard
+    redirect('Dashboard');
+}
+
+
 
 }

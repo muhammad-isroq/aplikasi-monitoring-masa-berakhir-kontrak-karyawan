@@ -68,14 +68,14 @@
 
       <div class="content-header">
         <div class="container-fluid">
-          <div class="row mb-2">
+          <div class="row row-md-2">
             <div class="col-sm-6">
               <h1 class="h3 mb-4 ">Dashboard</h1>
-              <p>Selamat datang di Sistem Monitoring Masa Berakhir Kontrak Karyawan</p>
+              <p class="text-bg-light p-3 shadow">Selamat datang di Sistem Monitoring Masa Berakhir Kontrak Karyawan</p>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="<?=base_url('Admin');?>">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="<?=base_url('Dashboard');?>">Dashboard</a></li>
                 <li class="breadcrumb-item" arian-current="page"></li>
               </ol>
             </div>
@@ -113,7 +113,7 @@
             </script>
           <?php } ?>
           <div class="row row-md-2 mb-3">
-            <div class="col-md">
+            <div class="col-md-6">
               <div class="card p-3 shadow-md">
                 <p>
                   Sistem ini akan mengirimkan notifikasi sebulan sebelum masa kontrak habis. Pesan, email penerima,email pengirim dan app pasword email pengirim dapat diedit pada tabel dibawah.
@@ -124,14 +124,81 @@
                 </p>
               </div>
             </div>
-            <div class="col-md">
-              <!-- <h2>iya</h2> -->
+            <div class="col-md-6">
+              <div class="card">
+                <div class="card-header text-bg-dark text-center">
+                  Ubah Data admin
+                </div>
+                <div class="card-body table table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr class="text-center">
+                      <th scope="col">NO</th>
+                      <th scope="col">Username</th>
+                      <th scope="col">Password</th>
+                      <th scope="col">Nama Lengkap</th>
+                      <th scope="col">Tindakan</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php $no = 1; foreach($users as $r){ ?>
+                      <tr class="text-center">
+                        <td><?= $no; ?></td>
+                        <td><?= $r['username'];?></td>
+                        <td><?= $r['password'];?></td>
+                        <td><?= $r['nama_lengkap'];?></td>
+                        <td>
+                          <!-- Button trigger modal -->
+                          <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="fas fa-pen"></i>
+                          </button>
+
+                          <!-- Modal -->
+                          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h1 class="modal-title fs-5" id="exampleModalLabel">ubah data admin</h1>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  <form method="POST" action="<?=base_url('Dashboard/update_user'); ?>"enctype="multipart/form-data">
+                                    <input type="hidden" name="id" value="<?= $r['id']; ?>">          
+                                    <div class="form-group">
+                                      <label for="">Username</label>
+                                      <input type="text" name="username" value="<?= $r['username']; ?>" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="">Password</label>
+                                      <input type="password" name="password" value="<?= $r['password']; ?>" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                      <label for="">Nama Lengkap</label>
+                                      <input type="text" name="nama_lengkap" value="<?= $r['nama_lengkap']; ?>" class="form-control">
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <button type="submit" class="btn btn-primary">Save changes</button>
+                                    </div>                               
+                                  </form>
+                                </div>
+                                
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    <?php } ?>
+                  </tbody>
+                </table>
+              </div>
+              </div>
             </div>            
           </div>
           <div class="row row-md">
-            <div class="card p-2 mb-3">
-              <div class="card-header bg-primary" > 
-                <h3>Edit pesan dan email penerima</h3>
+            <div class="card mb-3">
+              <div class="card-header bg-primary text-center " > 
+                Edit pesan dan email penerima
               </div>              
               <div class="card-body table table-responsive p-0">
                 <table class="table table-hover text-nowrap">
