@@ -73,7 +73,17 @@ class PegawaiEpisi extends CI_Controller {
     public function search()
 {
     $keyword = $this->input->post('keyword');
-    $data['result'] = $this->Episi_model->search_pegawai($keyword);
+    $result = $this->Episi_model->search_pegawai($keyword);
+
+    if (!empty($result)) {
+        $data['status'] = 'success';
+        $data['message'] = 'Pegawai ditemukan!';
+    } else {
+        $data['status'] = 'error';
+        $data['message'] = 'Pegawai tidak ditemukan!';
+    }
+
+    $data['result'] = $result;
 
     // Load hasil pencarian di dalam modal
     $this->load->view('v_header', $data);

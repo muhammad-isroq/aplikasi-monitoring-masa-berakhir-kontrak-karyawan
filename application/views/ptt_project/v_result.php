@@ -87,8 +87,8 @@ $this->load->view('v_sidebar');
 <section class="content">
     <div class="container-fluid">
       <div class="row row-md-2">
-          <div class="col col-md-6 ">
-              <div class="card text-bg-light">
+          <div class="col-md-6 ">
+              <div class="card text-bg-light shadow">
                 <div class="card-header bg-primary">
                     Data PTT Project
                 </div>
@@ -104,15 +104,18 @@ $this->load->view('v_sidebar');
               </div>
           </div>
       </div>
-      <div class="col col-md-6">
-        <div class="card text-bg-light">
+      <div class="col-md-6">
+        <div class="card text-bg-light shadow">
             <div class="card-header bg-primary">
-                Cari nama pegawai/nama project/nomor kontrak
+                Cari pegawai
+                <a href="<?= base_url('PttProject');?>" class="btn btn-warning float-end" type="button">
+                    <i class="fi fi-ts-house-chimney"></i>
+                </a>
             </div>
             <div class="card-body">
                 <form method="POST" action="<?= base_url('PttProject/search'); ?>">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Cari" name="keyword">
+                        <input type="text" class="form-control" placeholder="Cari pegawai berdasarkan nama, nomor kontrak/ nama project" name="keyword">
                         <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
@@ -221,6 +224,7 @@ $this->load->view('v_sidebar');
     <div class="card-body">
 
         <div class="table-responsive p-0">
+            <?php if (!empty($result)) : ?>
          <table class="table table-hover text-nowrap">        
             <thead>
                 <tr class="">
@@ -332,6 +336,9 @@ $this->load->view('v_sidebar');
                     <?php $no++;} ?>  
                 </tbody>
             </table>
+            <?php else : ?>
+            <p>Tidak ada data yang ditemukan.</p>
+        <?php endif; ?>
             <!-- Tampilkan Pagination -->
 <!--             <div class="d-flex justify-content-center">
                 <?= $pagination; ?>
@@ -362,6 +369,21 @@ $this->load->view('v_sidebar');
 </aside>
 
 </div>
+
+
+
+
+<script>
+    // Cek apakah ada notifikasi status dari controller
+    <?php if (isset($status) && isset($message)) : ?>
+        Swal.fire({
+            icon: '<?= $status ?>', // 'success' atau 'error'
+            title: '<?= $message ?>', // Pesan notifikasi
+            showConfirmButton: true
+        });
+    <?php endif; ?>
+</script>
+
 
 <script>
         document.getElementById('logout-link').addEventListener('click', function(event) {

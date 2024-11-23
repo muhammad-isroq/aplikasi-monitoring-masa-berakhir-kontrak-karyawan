@@ -36,9 +36,9 @@
 
     <div class="preloader flex-column justify-content-center align-items-center">
         <img class="animation__shake" src="<?= base_url();?>AdminLTE-3.2.0/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-  </div>
+    </div>
 
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light fixed-top">
 
       <ul class="navbar-nav" data-widget="tree">
         <li class="nav-item">
@@ -88,8 +88,8 @@ $this->load->view('v_sidebar');
 <section class="content">
     <div class="container-fluid">
       <div class="row row-md-2">
-          <div class="col col-md-6 ">
-              <div class="card text-bg-light">
+          <div class="col-md-6 ">
+              <div class="card text-bg-light shadow">
                 <div class="card-header bg-primary">
                     Data Pegawai Wisesa
                 </div>
@@ -105,15 +105,18 @@ $this->load->view('v_sidebar');
               </div>
           </div>
       </div>
-      <div class="col col-md-6">
-        <div class="card text-bg-light">
+      <div class="col-md-6">
+        <div class="card text-bg-light shadow">
             <div class="card-header bg-primary">
-                Cari pegawai
+                Cari pegawai wisesa
+                <a href="<?= base_url('PegawaiWisesa');?>" class="btn btn-warning float-end" type="button">
+                    <i class="fi fi-ts-house-chimney"></i>
+                </a>
             </div>
             <div class="card-body">
-                <form method="POST" action="<?= base_url('PegawaiWisesa/searchPegawai'); ?>">
+                <form method="POST" action="<?= base_url('PegawaiWisesa/search'); ?>">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Cari pegawai" name="keyword">
+                        <input type="text" class="form-control" placeholder="Cari pegawai berdasarkan nama,npp, posisi pekerjaan" name="keyword">
                         <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>
@@ -246,7 +249,8 @@ $this->load->view('v_sidebar');
     <div class="card-body">
 
         <div class="table-responsive p-0">
-           <table class="table table-hover text-nowrap">        
+            <?php if (!empty($result)) : ?>
+         <table class="table table-hover text-nowrap">        
             <thead>
                 <tr class="">
                     <th scope="col">NO</th>
@@ -389,13 +393,15 @@ $this->load->view('v_sidebar');
                         </td>     
                         <td>
                             <a href="<?=base_url().'PegawaiWisesa/hapus_wisesa/'.$r['id_wisesa']; ?>" type="button" class="btn btn-danger" onclick="return confirm('yakin ingin menghapus?');"><i class="fas fa-trash"></i> 
-</a>   
+                            </a>   
                         </td>                
                     </tr>
                     <?php $no++;} ?>  
                 </tbody>
             </table>
-            <!-- Tampilkan Pagination -->
+            <?php else : ?>
+            <p>Tidak ada data yang ditemukan.</p>
+        <?php endif; ?>
             
         </div>   
 
@@ -419,21 +425,32 @@ $this->load->view('v_sidebar');
 </div>
 
 <script>
-        document.getElementById('logout-link').addEventListener('click', function(event) {
-          event.preventDefault();
-          Swal.fire({
-            title: 'Yakin ingin logout?',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Ya, logout',
-            cancelButtonText: 'Tidak, tetap disini'
-          }).then((result) => {
-            if (result.isConfirmed) {
-              window.location.href = "<?=base_url('Auth/logout');?>";
-            }
-          });
+    // Cek apakah ada notifikasi status dari controller
+    <?php if (isset($status) && isset($message)) : ?>
+        Swal.fire({
+            icon: '<?= $status ?>', // 'success' atau 'error'
+            title: '<?= $message ?>', // Pesan notifikasi
+            showConfirmButton: true
         });
-      </script>
+    <?php endif; ?>
+</script>
+
+<script>
+    document.getElementById('logout-link').addEventListener('click', function(event) {
+      event.preventDefault();
+      Swal.fire({
+        title: 'Yakin ingin logout?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, logout',
+        cancelButtonText: 'Tidak, tetap disini'
+    }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "<?=base_url('Auth/logout');?>";
+      }
+  });
+});
+</script>
 
 <script src="<?= base_url('AdminLTE-3.2.0/plugins/jquery/jquery.min.js');?>"></script>
 

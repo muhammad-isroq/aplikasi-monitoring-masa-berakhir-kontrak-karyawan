@@ -88,8 +88,8 @@ $this->load->view('v_sidebar');
 <section class="content">
     <div class="container-fluid">
       <div class="row row-md-2">
-          <div class="col col-md-6 ">
-              <div class="card text-bg-light">
+          <div class="col-md-6 ">
+              <div class="card text-bg-light shadow">
                 <div class="card-header bg-primary">
                     Data Pegawai Wisesa
                 </div>
@@ -105,15 +105,15 @@ $this->load->view('v_sidebar');
               </div>
           </div>
       </div>
-      <div class="col col-md-6">
-        <div class="card text-bg-light">
+      <div class="col-md-6">
+        <div class="card text-bg-light shadow">
             <div class="card-header bg-primary">
-                Cari pegawai
+                Cari pegawai wisesa
             </div>
             <div class="card-body">
                 <form method="POST" action="<?= base_url('PegawaiWisesa/search'); ?>">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Cari pegawai" name="keyword">
+                        <input type="text" class="form-control" placeholder="Cari pegawai berdasarkan nama,npp, posisi pekerjaan" name="keyword">
                         <button class="btn btn-outline-secondary" type="submit"><i class="fas fa-search"></i></button>
                     </div>
                 </form>

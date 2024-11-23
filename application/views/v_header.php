@@ -13,6 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Dashboard simkarya</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-straight/css/uicons-thin-straight.css'>
 </head>
 <body>
   

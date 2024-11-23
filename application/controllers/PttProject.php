@@ -73,13 +73,24 @@ class PttProject extends CI_Controller {
 public function search()
 {
     $keyword = $this->input->post('keyword');
-    $data['result'] = $this->PttProject_model->search_pegawai($keyword);
+    $result = $this->PttProject_model->search_pegawai($keyword);
+
+    if (!empty($result)) {
+        $data['status'] = 'success';
+        $data['message'] = 'Pegawai ditemukan!';
+    } else {
+        $data['status'] = 'error';
+        $data['message'] = 'Pegawai tidak ditemukan!';
+    }
+
+    $data['result'] = $result;
 
     // Load hasil pencarian di dalam modal
     $this->load->view('v_header', $data);
     $this->load->view('ptt_project/v_result', $data);
-    $this->load->view('v_footer'); 
+    $this->load->view('v_footer');
 }
+
 
 
 public function insert_ptt_project()
