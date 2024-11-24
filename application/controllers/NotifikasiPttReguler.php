@@ -71,7 +71,7 @@ class NotifikasiPttReguler extends CI_Controller {
             $body = $user->message1 . '<br><br>';
 
             foreach ($expiring_employees as $employee) {
-                $body .= 'Kontrak karyawan atas nama ' . $employee->nama . '('. $employee->pangkat.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->end_date)) . '.<br>';
+                $body .= 'Kontrak karyawan PTT Reguler atas nama ' . $employee->nama . '('. $employee->pangkat.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->end_date)) . '.<br>';
             }
             $body .= '<br>Terima kasih.';
 
@@ -93,7 +93,7 @@ class NotifikasiPttReguler extends CI_Controller {
             $body = $user->message2 . '<br><br>';
 
             foreach ($expiring_employees as $employee) {
-                $body .= 'Kontrak karyawan atas nama ' . $employee->nama . '('. $employee->pangkat.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->end_date)) . '.<br>';
+                $body .= 'Kontrak karyawan PTT Reguler atas nama ' . $employee->nama . '('. $employee->pangkat.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->end_date)) . '.<br>';
             }
             $body .= '<br>Terima kasih.';
             foreach ($expiring_employees as $employee) {

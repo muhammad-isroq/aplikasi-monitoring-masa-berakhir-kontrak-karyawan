@@ -71,7 +71,7 @@
           <div class="row row-md-2">
             <div class="col-sm-6">
               <h1 class="h3 mb-4 ">Dashboard</h1>
-              <p class="text-bg-light p-3 shadow">Selamat datang di Sistem Monitoring Masa Berakhir Kontrak Karyawan</p>
+              <p class="text-bg-light"></p>
             </div>
             <div class="col-sm-6">
               <ol class="breadcrumb float-sm-right">
@@ -113,8 +113,11 @@
             </script>
           <?php } ?>
           <div class="row row-md-2 mb-3">
-            <div class="col-md-6">
+            <div class="col-md-8">
               <div class="card p-3 shadow-md">
+                <p>
+                  Selamat datang di Sistem Monitoring Masa Berakhir Kontrak Karyawan
+                </p>
                 <p>
                   Sistem ini akan mengirimkan notifikasi sebulan sebelum masa kontrak habis. Pesan, email penerima,email pengirim dan app pasword email pengirim dapat diedit pada tabel dibawah.
                 </p>
@@ -124,7 +127,7 @@
                 </p>
               </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <div class="card">
                 <div class="card-header text-bg-dark text-center">
                   Ubah Data admin
@@ -142,7 +145,7 @@
                   </thead>
                   <tbody>
                     <?php $no = 1; foreach($users as $r){ ?>
-                      <tr class="text-center">
+                      <tr >
                         <td><?= $no; ?></td>
                         <td><?= $r['username'];?></td>
                         <td><?= $r['password'];?></td>

@@ -71,7 +71,7 @@ class NotifikasiPttProject extends CI_Controller {
             $body = $user->message1 . '<br><br>';
 
             foreach ($expiring_employees as $employee) {
-                $body .= 'Kontrak karyawan atas nama ' . $employee->nama .' dengan nama project '. '('. $employee->nama_project.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->tgl_selesai)) . '.<br>';
+                $body .= 'Kontrak karyawan PTT Project atas nama ' . $employee->nama .' dengan nama project '. '('. $employee->nama_project.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->tgl_selesai)) . '.<br>';
             }
             $body .= '<br>Terima kasih.';
 
@@ -93,7 +93,7 @@ class NotifikasiPttProject extends CI_Controller {
             $body = $user->message2 . '<br><br>';
 
             foreach ($expiring_employees as $employee) {
-                $body .= 'Kontrak karyawan atas nama ' . $employee->nama .' dengan nama project '. '('. $employee->nama_project.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->tgl_selesai)) . '.<br>';
+                $body .= 'Kontrak karyawan PTT Project atas nama ' . $employee->nama .' dengan nama project '. '('. $employee->nama_project.')' . ' akan berakhir pada ' . date('d-m-Y', strtotime($employee->tgl_selesai)) . '.<br>';
             }
             $body .= '<br>Terima kasih.';
             foreach ($expiring_employees as $employee) {

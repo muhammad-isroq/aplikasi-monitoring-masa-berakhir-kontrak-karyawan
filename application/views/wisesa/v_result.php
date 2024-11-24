@@ -150,7 +150,7 @@ $this->load->view('v_sidebar');
   </script>
 <?php } ?>
 <div class="row row-md">
-    <div class="card p-3">
+    <div class="card p-3 shadow">
       <div class="card-header bg-dark" > 
         <h2 class="text-center ">Data Pegawai Wisesa</h2>
         <button type="button" class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#exampleModal1">
