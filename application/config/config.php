@@ -23,8 +23,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://scidmi.my.id/';
+$config['base_url'] = '// http://localhost/simkarya/';
 // http://localhost/simkarya/
+https://scidmi.my.id/
 /*
 |--------------------------------------------------------------------------
 | Index File
