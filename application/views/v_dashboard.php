@@ -50,7 +50,7 @@
       </ul>
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a href="" class="nav-link"><i class="fi fi-rr-user p-2"></i>Selamat datang <?php echo  $this->session->userdata('username');?></a>
+          <a href="" class="nav-link"><i class="fi fi-rr-user p-2"></i>welcome <?php echo  $this->session->userdata('username');?></a>
         </li>
         <li class="nav-item">
           <a href="#" id="logout-link" class="nav-link"><i class="fi fi-rr-sign-out-alt p-2"></i>Logout</a>
