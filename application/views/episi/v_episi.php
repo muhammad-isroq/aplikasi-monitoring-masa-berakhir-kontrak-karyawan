@@ -223,7 +223,7 @@ $this->load->view('v_sidebar');
                             <input type="date" name="tgl_lahir" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label for="">Usia Ditahun 2023</label>
+                            <label for="">Usia Tahun ini</label>
                             <input type="text" name="usia_ditahun2023" class="form-control" required>
                         </div>
                         <div class="form-group">
@@ -321,7 +321,7 @@ $this->load->view('v_sidebar');
                     <th scope="col">Bank</th>
                     <th scope="col">Tempat Lahir</th>
                     <th scope="col">Tanggal Lahir</th>
-                    <th scope="col">Usia ditahun 2023</th>
+                    <th scope="col">Usia Tahun ini</th>
                     <th scope="col">Jenis Kelamin</th>
                     <th scope="col">Alamat Tinggal</th>
                     <th scope="col">Provinsi</th>
@@ -450,7 +450,7 @@ $this->load->view('v_sidebar');
                                                     <input type="date" name="tgl_lahir" value="<?= $r['tgl_lahir'];?>" class="form-control">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="">Usia Ditahun 2023</label>
+                                                    <label for="">Usia Tahun ini</label>
                                                     <input type="text" name="usia_ditahun2023" value="<?= $r['usia_ditahun2023'];?>" class="form-control">
                                                 </div>
                                                 <div class="form-group">
