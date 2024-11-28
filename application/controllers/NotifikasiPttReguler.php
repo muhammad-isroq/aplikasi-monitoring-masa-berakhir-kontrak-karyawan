@@ -13,43 +13,6 @@ class NotifikasiPttReguler extends CI_Controller {
         $this->load->library('Mailer');
     }
 
-    private function send_email($recipients, $subject, $body) {
-    $this->load->library('email');
-
-    // Ambil smtp_user dan smtp_pass dari tabel users
-    $user_data = $this->db->select('smtp_user, smtp_pass')
-                          ->where('id', 1) // Ganti sesuai ID user yang Anda inginkan
-                          ->get('users')
-                          ->row();
-
-    // Konfigurasi email
-                          $config = [
-                            'protocol'  => 'smtp',
-                            'smtp_host' => 'smtp.gmail.com',
-                            'smtp_user' => $user_data->smtp_user,
-                            'smtp_pass' => $user_data->smtp_pass,
-                            'smtp_port' => 587,
-                            'smtp_crypto' => 'tls',
-                            'mailtype'  => 'html',
-                            'charset'   => 'utf-8',
-                            'newline'   => "\r\n"
-                        ];
-
-                        $this->email->initialize($config);
-                        $this->email->from($user_data->smtp_user, 'simkarya');
-                        $this->email->to($recipients);
-                        $this->email->subject($subject);
-                        $this->email->message($body);
-
-    // Kirim email dan cek hasilnya
-                        if ($this->email->send()) {
-                            echo "Notifikasi berhasil dikirim ke " . implode(", ", $recipients) . ".<br>";
-                        } else {
-                            echo "Gagal mengirim email ke " . implode(", ", $recipients) . ".<br>";
-                            show_error($this->email->print_debugger());
-                        }
-                    }
-
     public function index()
     {
       $threshold_date = date('Y-m-d', strtotime('+1 month'));
@@ -76,14 +39,12 @@ class NotifikasiPttReguler extends CI_Controller {
             $body .= '<br>Terima kasih.';
 
             // Kirim email ke email1 dan perbarui status jika berhasil
-            if ($this->mailer->send_email($recipients, $subject, $body)) {
+            if ($this->send_email($recipients, $subject, $body)) {
             // Perbarui status is_notified menjadi 1
                 $this->db->where('id_ptt_reguler', $employee->id_ptt_reguler);
                 $this->db->update('ptt_reguler', ['is_notified' => 1]);
 
-                echo "Notifikasi email1 berhasil dikirim atas berakhirnya masa kontrak karyawan " . $employee->nama . ".<br>";
-            } else {
-                echo "Gagal mengirim notifikasi email1 atas berakhirnya masa kontrak karyawan " . $employee->nama . ".<br>";
+                echo "Notifikasi berhasil dikirim atas berakhirnya masa kontrak karyawan " . $employee->nama . ".<br>";
             }
         }
 
@@ -98,14 +59,12 @@ class NotifikasiPttReguler extends CI_Controller {
             $body .= '<br>Terima kasih.';
             foreach ($expiring_employees as $employee) {
             // Kirim email ke email2
-                if ($this->mailer->send_email($recipients, $subject, $body)) {
+                if ($this->send_email($recipients, $subject, $body)) {
             // Perbarui status is_notified menjadi 1
                     $this->db->where('id_ptt_reguler', $employee->id_ptt_reguler);
                     $this->db->update('ptt_reguler', ['is_notified' => 1]);
 
-                    echo "Notifikasi email2 berhasil dikirim atas berakhirnya masa kontrak karyawan " . $employee->nama . ".<br>";
-                } else {
-                    echo "Gagal mengirim notifikasi email2 atas berakhirnya masa kontrak karyawan " . $employee->nama . ".<br>";
+                    echo "Notifikasi berhasil dikirim atas berakhirnya masa kontrak karyawan " . $employee->nama . ".<br>";
                 }
             }
         }
@@ -114,8 +73,45 @@ class NotifikasiPttReguler extends CI_Controller {
 
 
 
+private function send_email($recipients, $subject, $body) {
+    $this->load->library('email');
+
+    // Ambil smtp_user dan smtp_pass dari tabel users
+    $user_data = $this->db->select('smtp_user, smtp_pass')
+                          ->where('id', 1) // Ganti sesuai ID user yang Anda inginkan
+                          ->get('users')
+                          ->row();
+
+    // Konfigurasi email
+                          $config = [
+                            'protocol'  => 'smtp',
+                            'smtp_host' => 'smtp.gmail.com',
+                            'smtp_user' => $user_data->smtp_user,
+                            'smtp_pass' => $user_data->smtp_pass,
+                            'smtp_port' => 587,
+                            'smtp_crypto' => 'tls',
+                            'mailtype'  => 'html',
+                            'charset'   => 'utf-8',
+                            'newline'   => "\r\n"
+                        ];
+
+                        $this->email->initialize($config);
+                        $this->email->from($user_data->smtp_user, 'Simkarya');
+                        $this->email->to($recipients);
+                        $this->email->subject($subject);
+                        $this->email->message($body);
+
+    // Kirim email dan cek hasilnya
+                        if ($this->email->send()) {
+                            echo "Notifikasi berhasil dikirim ke " . implode(", ", $recipients) . ".<br>";
+                            return true; // Mengembalikan true jika berhasil
+                        } else {
+                            echo "Gagal mengirim email ke " . implode(", ", $recipients) . ".<br>";
+                            show_error($this->email->print_debugger());
+                            return false; // Mengembalikan false jika gagal
+                        }
+                    }
 
 
 
-
-}
+                }

@@ -39,14 +39,12 @@ class NotifikasiEpisi extends CI_Controller {
             $body .= '<br>Terima kasih.';
 
             // Kirim email ke email1 dan perbarui status jika berhasil
-            if ($this->mailer->send_email($recipients, $subject, $body)) {
+            if ($this->send_email($recipients, $subject, $body)) {
             // Perbarui status is_notified menjadi 1
                 $this->db->where('id_episi', $employee->id_episi);
                 $this->db->update('episi', ['is_notified' => 1]);
 
                 echo "Notifikasi berhasil dikirim atas berakhirnya masa kontrak karyawan " . $employee->nama_pegawai . ".<br>";
-            } else {
-                echo "Gagal mengirim notifikasi atas berakhirnya masa kontrak karyawan " . $employee->nama_pegawai . ".<br>";
             }
         }
 
@@ -61,14 +59,12 @@ class NotifikasiEpisi extends CI_Controller {
             $body .= '<br>Terima kasih.';
             foreach ($expiring_employees as $employee) {
             // Kirim email ke email2
-                if ($this->mailer->send_email($recipients, $subject, $body)) {
+                if ($this->send_email($recipients, $subject, $body)) {
             // Perbarui status is_notified menjadi 1
                     $this->db->where('id_episi', $employee->id_episi);
                     $this->db->update('episi', ['is_notified' => 1]);
 
                     echo "Notifikasi berhasil dikirim atas berakhirnya masa kontrak karyawan " . $employee->nama_pegawai . ".<br>";
-                } else {
-                    echo "Gagal mengirim notifikasi atas berakhirnya masa kontrak karyawan " . $employee->nama_pegawai . ".<br>";
                 }
             }
         }
@@ -101,7 +97,6 @@ private function send_email($recipients, $subject, $body) {
 
                         $this->email->initialize($config);
                         $this->email->from($user_data->smtp_user, 'Simkarya');
-                        // $this->email->from($user_data->smtp_user, 'Simkarya');
                         $this->email->to($recipients);
                         $this->email->subject($subject);
                         $this->email->message($body);
@@ -109,12 +104,14 @@ private function send_email($recipients, $subject, $body) {
     // Kirim email dan cek hasilnya
                         if ($this->email->send()) {
                             echo "Notifikasi berhasil dikirim ke " . implode(", ", $recipients) . ".<br>";
+                            return true; // Mengembalikan true jika berhasil
                         } else {
                             echo "Gagal mengirim email ke " . implode(", ", $recipients) . ".<br>";
                             show_error($this->email->print_debugger());
+                            return false; // Mengembalikan false jika gagal
                         }
                     }
 
 
 
-}
+                }
